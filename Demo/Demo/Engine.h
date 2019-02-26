@@ -4,16 +4,23 @@
 #include <Windows.h>
 #include <string>
 
+#define SPACE 0b00000001
+#define LEFT 0b00000010
+#define RIGHT 0b00000100
+
 // MAX SIZE 1080P FULL SCREEN = 240 X 63
 
 class Engine {
 private:
     int sizex, sizey;
     int length;
+    bool cadreOn;
 
     wchar_t* screen;
     wchar_t* consoleTitle;
     WORD* attributes;
+
+    WORD defaultBG;
 
     HANDLE hscreen;
     DWORD written;
@@ -31,6 +38,8 @@ public:
         this->sizex = sizex;
         this->sizey = sizey;
         this->length = sizex * sizey;
+        defaultBG = bg;
+        cadreOn = false;
 
         screen = new wchar_t[length];
         consoleTitle = new wchar_t[128];
@@ -44,7 +53,7 @@ public:
 
         for (int i = 0; i < length; ++i) {
             screen[i] = ' ';
-            attributes[i] = bg;
+            attributes[i] = defaultBG;
         }
 
         ticks = GetTickCount();
@@ -57,6 +66,10 @@ public:
         attributes[(sizex * y) + x] = c;
     }
 
+    void setPixel(unsigned int x, unsigned int y, char data) {
+        screen[(sizex * y) + x] = data;
+    }
+
     void cadre(char d, WORD c) {
         for (int i = 0; i < sizey; ++i) {
             setPixel(0, i, d, c);
@@ -66,6 +79,27 @@ public:
         for (int i = 0; i < sizex; ++i) {
             setPixel(i, 0, d, c);
             setPixel(i, sizey - 1, d, c);
+        }
+        cadreOn = true;
+    }
+
+    void cadre(bool state) {
+        cadreOn = state;
+    }
+
+    void clean() {
+        if (cadreOn) {
+            for (int i = 1; i < (sizex - 1); ++i) {
+                for (int j = 1; j < (sizey - 1); ++j) {
+                    setPixel(i, j, ' ', defaultBG);
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < length; ++i) {
+                screen[i] = ' ';
+                attributes[i] = defaultBG;
+            }
         }
     }
 
@@ -79,6 +113,7 @@ public:
             fpsTicks = GetTickCount();
             fps = 0;
         }
+        clean();
     }
 
     unsigned long int getTime() {
@@ -87,6 +122,22 @@ public:
 
     void resetTime() {
         ticks = GetTickCount();
+    }
+
+    int checkKey() {
+
+        int returnVal = 0b00000000;
+
+        if (GetAsyncKeyState(VK_SPACE))
+            returnVal |= SPACE;
+
+        if (GetAsyncKeyState(VK_LEFT))
+            returnVal |= LEFT;
+
+        if (GetAsyncKeyState(VK_RIGHT))
+            returnVal |= RIGHT;
+
+        return returnVal;
     }
 
 };

@@ -7,6 +7,7 @@
 class House : public Component {
 private:
     std::list<Bloc> list;
+
 public:
     House(int posx, int posy) : Component(posx, posy, 0, '#') {
         list.push_back(Bloc(3 + posx, 0 + posy));
@@ -30,7 +31,7 @@ public:
         list.push_back(Bloc(5 + posx, 4 + posy));
     }
 
-    void draw(Display &screen) {
+    void draw(Engine &screen) {
         std::list<Bloc>::iterator it = list.begin();
         while (it != list.end()) {
             (*it).draw(screen);

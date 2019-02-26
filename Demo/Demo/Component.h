@@ -1,7 +1,7 @@
 #ifndef DEMO_COMPONENT_H
 #define DEMO_COMPONENT_H
 
-#include "Display.h"
+#include "Engine.h"
 
 class Component {
 protected:
@@ -19,7 +19,7 @@ public:
         this->texture = texture;
     }
 
-    virtual void draw(Display &screen) {
+    virtual void draw(Engine &screen) {
         screen.setPixel(posx, posy, texture);
     }
 

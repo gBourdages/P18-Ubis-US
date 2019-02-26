@@ -159,6 +159,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo.cpp" />
