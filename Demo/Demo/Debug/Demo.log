@@ -1,0 +1,4 @@
+﻿  Demo.cpp
+d:\localhome\demo\demo\display.h(18): warning C4018: '<': signed/unsigned mismatch
+d:\localhome\demo\demo\display.h(35): warning C4018: '<': signed/unsigned mismatch
+  Demo.vcxproj -> D:\LocalHome\Demo\Debug\Demo.exe
