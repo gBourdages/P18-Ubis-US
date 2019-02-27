@@ -1,16 +1,26 @@
 #include "pch.h"
 
+#include <time.h>
 #include "Display.h"
 #include "House.h"
 #include "Engine.h"
 #include "Player.h"
+#include "Game.h"
 
 int main() {
 
     Engine engine(240, 63, BACKGROUND_GREEN | BACKGROUND_RED);
     engine.cadre('#', FOREGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
 
-    Player p(50, 50);
+    Player p(50, 60);
+
+    Game g;
+
+    Timer minionsMoveT;
+    int minionsMove = 7;
+
+    Timer minionsShoot;
+    srand(time(NULL));
 
     bool state = false;
     int keyState;
@@ -29,24 +39,26 @@ int main() {
                 p.move(1, 0);
             }
 
+
+            p.checkCollision(g);
+            g.checkProjectileCollision();
+            g.draw(engine);
             p.draw(engine);
             engine.draw();
             engine.resetTime();
                 
         }
+        if (minionsMoveT.getTime() > 1000) {
+            g.moveMinions(minionsMove);
+            minionsMove *= -1;
+            minionsMoveT.reset();
+        }
+
+        if (minionsShoot.getTime() > 100) {
+            g.shoot(rand() % 200 + 25);
+            minionsShoot.reset();
+        }
+
     }
-        
-    /*bool game = true;
-
-    Display screen;
-    screen.cadre('H');
-    House house1(5, 5);
-    house1.draw(screen);
-    screen.setPixel(230, 60, '@');
-    screen.refresh();
-
-    while (game) {
-
-    }*/
 }
 

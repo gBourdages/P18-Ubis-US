@@ -10,6 +10,25 @@
 
 // MAX SIZE 1080P FULL SCREEN = 240 X 63
 
+
+class Timer {
+private:
+    unsigned long int ticks;
+
+public:
+    Timer() {
+        ticks = GetTickCount();
+    }
+
+    unsigned long int getTime() {
+        return GetTickCount() - ticks;
+    }
+
+    void reset() {
+        ticks = GetTickCount();
+    }
+};
+
 class Engine {
 private:
     int sizex, sizey;

@@ -8,7 +8,7 @@
 class Bloc : public Component {
 private:
 public:
-    Bloc(int posx, int posy) : Component(posx, posy, BLOCHP, '#') {
+    Bloc(int posx, int posy) : Component(posx, posy, BLOCHP, 0, '#') {
 
     }
 

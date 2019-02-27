@@ -6,10 +6,12 @@
 
 class House : public Component {
 private:
+
     std::list<Bloc> list;
 
 public:
-    House(int posx, int posy) : Component(posx, posy, 0, '#') {
+    House(int posx, int posy, std::list<Component> &list) : Component(posx, posy, 0, 0, '#') {
+
         list.push_back(Bloc(3 + posx, 0 + posy));
         list.push_back(Bloc(2 + posx, 1 + posy));
         list.push_back(Bloc(3 + posx, 1 + posy));
@@ -38,6 +40,7 @@ public:
             it++;
         }
     }
+
 };
 
 #endif

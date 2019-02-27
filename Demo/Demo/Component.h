@@ -8,14 +8,16 @@ protected:
     int posx;
     int posy;
     int hp;
+    int speed;
 
     char texture;
 
 public:
-    Component(int posx, int posy, int hp, char texture) {
+    Component(int posx, int posy, int hp, int speed, char texture) {
         this->posx = posx;
         this->posy = posy;
         this->hp = hp;
+        this->speed = speed;
         this->texture = texture;
     }
 
@@ -27,6 +29,16 @@ public:
         posx += x;
         posy += y;
     }
+
+    bool checkCollision(Component c) {
+        if (c.posx != posx)
+            return false;
+        if (c.posy == (posy + speed))
+            return true;
+        return false;
+    }
+
+
 };
 
 #endif

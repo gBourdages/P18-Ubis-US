@@ -10,14 +10,15 @@ private:
 protected:
 
 public:
-    Projectile(int posx, int posy) : Component(posx, posy, 0, '|') {
+    Projectile(int posx, int posy, int speed) : Component(posx, posy, 0, speed, '|') {
 
     }
 
     void draw(Engine &screen) {
         screen.setPixel(posx, posy, texture);
         if(posy)
-            posy -= 1;
+            posy = posy + speed;
+
     }
 
     int getposY() {

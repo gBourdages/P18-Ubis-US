@@ -1,4 +1,5 @@
 ﻿  Demo.cpp
 d:\localhome\p18-ubis-us\demo\demo\display.h(18): warning C4018: '<': signed/unsigned mismatch
 d:\localhome\p18-ubis-us\demo\demo\display.h(35): warning C4018: '<': signed/unsigned mismatch
+d:\localhome\p18-ubis-us\demo\demo\demo.cpp(23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Demo.vcxproj -> D:\LocalHome\P18-Ubis-US\Demo\x64\Debug\Demo.exe
