@@ -16,7 +16,7 @@ int main() {
     int keyState;
 
     while (true) {
-        if (engine.getTime() > 15) {
+        if (engine.getTime() > 16) {
             keyState = engine.checkKey();
 
             if (keyState & SPACE) {
