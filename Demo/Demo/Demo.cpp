@@ -9,8 +9,8 @@
 
 int main() {
 
-    Engine engine(240, 63, BACKGROUND_GREEN | BACKGROUND_RED);
-    engine.cadre('#', FOREGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED);
+    Engine engine(240, 63, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    engine.cadre('#', FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
     Player p(50, 60);
 
