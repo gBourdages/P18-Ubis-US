@@ -7,6 +7,7 @@
 #define SPACE 0b00000001
 #define LEFT 0b00000010
 #define RIGHT 0b00000100
+#define ESC 0b00001000
 
 // MAX SIZE 1080P FULL SCREEN = 240 X 63
 
@@ -155,6 +156,9 @@ public:
 
         if (GetAsyncKeyState(VK_RIGHT))
             returnVal |= RIGHT;
+
+        if (GetAsyncKeyState(VK_ESCAPE))
+            returnVal |= ESC;
 
         return returnVal;
     }

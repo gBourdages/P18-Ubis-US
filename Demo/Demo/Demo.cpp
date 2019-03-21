@@ -6,11 +6,14 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Game.h"
+#include "ControllerFPGA.h"
 
 int main() {
 
     Engine engine(240, 63, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     engine.cadre('#', FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+
+    ControllerFPGA voiceIn;
 
     Player p(50, 60);
 
@@ -24,9 +27,17 @@ int main() {
 
     bool state = false;
     int keyState;
+    bool run = true;
 
     while (true) {
-        if (engine.getTime() > 16) {
+        if (engine.getTime() > 16 && !run) {
+            keyState = engine.checkKey();
+            if (keyState & ESC) {
+                run = !run;
+            }
+        }
+
+        if (engine.getTime() > 16 && run) {
             keyState = engine.checkKey();
 
             if (keyState & SPACE) {
@@ -38,6 +49,11 @@ int main() {
             if (keyState & RIGHT) {
                 p.move(1, 0);
             }
+            if (keyState & ESC) {
+                run = !run;
+            }
+                
+
 
 
             p.checkCollision(g);
@@ -47,18 +63,17 @@ int main() {
             engine.draw();
             engine.resetTime();
                 
-        }
-        if (minionsMoveT.getTime() > 1000) {
-            g.moveMinions(minionsMove);
-            minionsMove *= -1;
-            minionsMoveT.reset();
-        }
+            if (minionsMoveT.getTime() > 1000) {
+                g.moveMinions(minionsMove);
+                minionsMove *= -1;
+                minionsMoveT.reset();
+            }
 
-        if (minionsShoot.getTime() > 100) {
-            g.shoot(rand() % 200 + 25);
-            minionsShoot.reset();
+            if (minionsShoot.getTime() > 100) {
+                g.shoot(rand() % 200 + 25);
+                minionsShoot.reset();
+            }
         }
-
     }
 }
 
