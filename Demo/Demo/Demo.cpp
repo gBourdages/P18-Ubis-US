@@ -52,6 +52,22 @@ int main() {
             if (keyState & ESC) {
                 run = !run;
             }
+
+            //CONTROL WITH VOICE
+            voiceIn.checkVoice();
+            if (voiceIn.getVoiceState() & A) {
+                //ACTION
+            }
+            if (voiceIn.getVoiceState() & E) {
+                //ACTION
+            }
+            if (voiceIn.getVoiceState() & I) {
+                //ACTION
+            }
+            if (voiceIn.getVoiceState() & O) {
+                //ACTION
+            }
+
                 
 
 
