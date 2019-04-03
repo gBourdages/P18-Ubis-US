@@ -57,15 +57,19 @@ int main() {
             voiceIn.checkVoice();
             if (voiceIn.getVoiceState() & A) {
                 //ACTION
+                p.move(-1, 0);
             }
             if (voiceIn.getVoiceState() & E) {
                 //ACTION
+                p.move(1, 0);
             }
             if (voiceIn.getVoiceState() & I) {
                 //ACTION
+                p.shoot();
             }
             if (voiceIn.getVoiceState() & O) {
                 //ACTION
+                run = !run;
             }
 
                 

@@ -1,5 +1,5 @@
 ﻿  Demo.cpp
-d:\localhome\p18-ubis-us\demo\demo\display.h(18): warning C4018: '<': signed/unsigned mismatch
-d:\localhome\p18-ubis-us\demo\demo\display.h(35): warning C4018: '<': signed/unsigned mismatch
-d:\localhome\p18-ubis-us\demo\demo\demo.cpp(26): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Demo.vcxproj -> D:\LocalHome\P18-Ubis-US\Demo\x64\Debug\Demo.exe
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\demo\demo\display.h(18): warning C4018: '<': signed/unsigned mismatch
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\demo\demo\display.h(35): warning C4018: '<': signed/unsigned mismatch
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\demo\demo\demo.cpp(26): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Demo.vcxproj -> D:\_PC\Documents\_Education\Universite\_Session2\Projet\GitHub\P18-Ubis-US\Demo\x64\Debug\Demo.exe
