@@ -12,6 +12,7 @@ private:
     std::list<Component> notMovingList;
     std::list<Component> minionsList;
     std::list<Projectile> projectileList;
+    bool minionMode;
 
 public:
     Game() {
@@ -29,10 +30,22 @@ public:
                 minionsList.push_back(Component(20 + (2 * i), 10 + j, 1, 0, 'S'));
             }
         }
+
+        minionMode = false;
+    }
+
+    int getShootTime() {
+        if (minionMode)
+            return 80;
+        else
+            return 300;
     }
 
     void shoot(int posx) {
-        projectileList.push_back(Projectile(posx, 20 , 1));
+        projectileList.push_back(Projectile(posx, 20, 1));
+        if (minionMode)
+            projectileList.back().setColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+            
     }
 
     bool checkProjectileCollision() {
@@ -110,6 +123,20 @@ public:
             (*it).move(l, 0);
             it++;
         }
+    }
+
+    void minionsBeast() {
+        if (!minionMode) {
+            for (std::list<Component>::iterator it = minionsList.begin(); it != minionsList.end(); ++it)
+                it->setTexture('M');
+            minionMode = true;
+        }
+        else {
+            for (std::list<Component>::iterator it = minionsList.begin(); it != minionsList.end(); ++it)
+                it->setTexture('S');
+            minionMode = false;
+        }
+        
     }
 
 

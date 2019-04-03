@@ -32,6 +32,8 @@ private:
     int ancCAN1 = 0;
     int ancCAN2 = 0;
     int ancCAN3 = 0;
+    bool init;
+    CommunicationFPGA port; // Instance du port de communication
 
 protected:
 
@@ -39,7 +41,9 @@ public:
 
     ControllerFPGA() {
         voiceState = 0b00000000;
-
+        init = port.estOk();
+        if (!init) { cout << port.messageErreur() << endl; }
+        //else cout << "Statut initial du port de communication = " << port.estOk() << endl << endl;
     }
 
     int getVoiceState() {
@@ -47,62 +51,60 @@ public:
     }
 
     void checkVoice() {
-        int returnVal = 0b00000000;
-       
-        int CAN0 = -1;
-        int CAN1 = -1;
-        int CAN2 = -1;
-        int CAN3 = -1;
+        if (init) {
+            int returnVal = 0b00000000;
 
-        BOOL statutport = false; // statut du port de communication qui sera cree
-
-        CommunicationFPGA port; // Instance du port de communication
-        if (!port.estOk()) { cout << port.messageErreur() << endl; }
-        //else cout << "Statut initial du port de communication = " << port.estOk() << endl << endl;
+            int CAN0 = -1;
+            int CAN1 = -1;
+            int CAN2 = -1;
+            int CAN3 = -1;
 
 
-        statutport = port.lireRegistre(nreg_lect_can0, CAN0);
-
-        statutport = port.lireRegistre(nreg_lect_can1, CAN1);
-
-        statutport = port.lireRegistre(nreg_lect_can2, CAN2);
-
-        statutport = port.lireRegistre(nreg_lect_can3, CAN3);
 
 
-        if (CAN0 >= 0x60 && ancCAN0 < 0x60) {
-            ancCAN0 = CAN0;
-            returnVal |= A;
+            port.lireRegistre(nreg_lect_can0, CAN0);
+
+            port.lireRegistre(nreg_lect_can1, CAN1);
+
+            port.lireRegistre(nreg_lect_can2, CAN2);
+
+            port.lireRegistre(nreg_lect_can3, CAN3);
+
+
+            if (CAN0 >= 0x60 && ancCAN0 < 0x60) {
+                ancCAN0 = CAN0;
+                returnVal |= A;
+            }
+            else if (CAN0 < 0x60) {
+                ancCAN0 = 0;
+            }
+
+            if (CAN1 >= 0x60 && ancCAN1 < 0x60) {
+                ancCAN1 = CAN1;
+                returnVal |= E;
+            }
+            else if (CAN1 < 0x60) {
+                ancCAN1 = 0;
+            }
+
+            if (CAN2 >= 0x60 && ancCAN2 < 0x60) {
+                ancCAN2 = CAN2;
+                returnVal |= I;
+            }
+            else if (CAN2 < 0x60) {
+                ancCAN2 = 0;
+            }
+
+            if (CAN3 >= 0x60 && ancCAN3 < 0x60) {
+                ancCAN3 = CAN3;
+                returnVal |= O;
+            }
+            else if (CAN3 < 0x60) {
+                ancCAN3 = 0;
+            }
+
+            voiceState = returnVal;
         }
-        else if(CAN0 < 0x60){
-          ancCAN0 = 0;
-        }
-
-        if (CAN1 >= 0x60 && ancCAN1 < 0x60) {
-          ancCAN1 = CAN1;
-          returnVal |= E;
-        }
-        else if (CAN1 < 0x60) {
-          ancCAN1 = 0;
-        }
-
-        if (CAN2 >=0x60 && ancCAN2 < 0x60) {
-          ancCAN2 = CAN2;
-          returnVal |= I;
-        }
-        else if (CAN2 < 0x60) {
-          ancCAN2 = 0;
-        }
-
-        if (CAN3 >= 0x60 && ancCAN3 < 0x60) {
-          ancCAN3 = CAN3;
-          returnVal |= O;
-        }
-        else if (CAN3 < 0x60) {
-          ancCAN3 = 0;
-        }
-
-        voiceState = returnVal;
     }
 };
 

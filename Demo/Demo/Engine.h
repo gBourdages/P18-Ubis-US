@@ -8,6 +8,8 @@
 #define LEFT 0b00000010
 #define RIGHT 0b00000100
 #define ESC 0b00001000
+#define B 0b00010000
+#define M 0b00100000
 
 // MAX SIZE 1080P FULL SCREEN = 240 X 63
 
@@ -88,6 +90,7 @@ public:
 
     void setPixel(unsigned int x, unsigned int y, char data) {
         screen[(sizex * y) + x] = data;
+        attributes[(sizex * y) + x] = defaultBG;
     }
 
     void cadre(char d, WORD c) {
@@ -159,6 +162,12 @@ public:
 
         if (GetAsyncKeyState(VK_ESCAPE))
             returnVal |= ESC;
+
+        if (GetAsyncKeyState(0x42))
+            returnVal |= B;
+
+        if (GetAsyncKeyState(0x4D))
+            returnVal |= M;
 
         return returnVal;
     }

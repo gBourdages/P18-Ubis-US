@@ -13,6 +13,8 @@ int main() {
     Engine engine(240, 63, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     engine.cadre('#', FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
+    bool dlc = true;
+
     ControllerFPGA voiceIn;
 
     Player p(50, 60);
@@ -30,11 +32,18 @@ int main() {
     bool run = true;
 
     while (true) {
-        if (engine.getTime() > 16 && !run) {
+        if (!run) {
             keyState = engine.checkKey();
             if (keyState & ESC) {
                 run = !run;
+                while (engine.getTime() < 1000) {}
             }
+            if (voiceIn.getVoiceState() & O) {
+                //ACTION
+                run = !run;
+                while (engine.getTime() < 1000) {}
+            }
+            
         }
 
         if (engine.getTime() > 16 && run) {
@@ -49,19 +58,26 @@ int main() {
             if (keyState & RIGHT) {
                 p.move(1, 0);
             }
+            if ((keyState & M) && dlc) {
+                g.minionsBeast();
+            }
+            if ((keyState & B) && dlc) {
+                p.box();
+            }
             if (keyState & ESC) {
                 run = !run;
             }
 
             //CONTROL WITH VOICE
             voiceIn.checkVoice();
-            if (voiceIn.getVoiceState() & A) {
+            if ((voiceIn.getVoiceState() & A) && dlc) {
                 //ACTION
-                p.move(-1, 0);
+                p.box();
             }
-            if (voiceIn.getVoiceState() & E) {
+            if ((voiceIn.getVoiceState() & E) && dlc) {
                 //ACTION
-                p.move(1, 0);
+                g.minionsBeast();
+
             }
             if (voiceIn.getVoiceState() & I) {
                 //ACTION
@@ -81,7 +97,7 @@ int main() {
             g.draw(engine);
             p.draw(engine);
             engine.draw();
-            engine.resetTime();
+            
                 
             if (minionsMoveT.getTime() > 1000) {
                 g.moveMinions(minionsMove);
@@ -89,10 +105,11 @@ int main() {
                 minionsMoveT.reset();
             }
 
-            if (minionsShoot.getTime() > 100) {
+            if (minionsShoot.getTime() > g.getShootTime()) {
                 g.shoot(rand() % 200 + 25);
                 minionsShoot.reset();
             }
+            engine.resetTime();
         }
     }
 }

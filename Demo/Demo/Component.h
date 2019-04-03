@@ -9,6 +9,7 @@ protected:
     int posy;
     int hp;
     int speed;
+    WORD color;
 
     char texture;
 
@@ -19,10 +20,23 @@ public:
         this->hp = hp;
         this->speed = speed;
         this->texture = texture;
+        color = NULL;
     }
 
     virtual void draw(Engine &screen) {
-        screen.setPixel(posx, posy, texture);
+        if (color == NULL)
+            screen.setPixel(posx, posy, texture);
+        else
+            screen.setPixel(posx, posy, texture, color);
+        
+    }
+
+    void setTexture(char texture) {
+        this->texture = texture;
+    }
+
+    void setColor(WORD c) {
+        color = c;
     }
 
     void move(int x, int y) {

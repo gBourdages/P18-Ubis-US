@@ -9,12 +9,20 @@
 class Player : public Component {
 private:
     std::list<Projectile> list;
+    bool boxOn;
 protected:
 
 public:
 
     Player(int posx, int posy) : Component(posx, posy, 20, 0, 'A') {
+        boxOn = false;
+    }
 
+    void box() {
+        if (boxOn)
+            boxOn = false;
+        else
+            boxOn = true;
     }
 
     void shoot() {
@@ -43,6 +51,13 @@ public:
                 it++;
         }
         screen.setPixel(posx, posy, texture);
+        if (boxOn) {
+            screen.setPixel(posx, posy -1, '_', FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+            screen.setPixel(posx + 1, posy -1, '_', FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+            screen.setPixel(posx - 1, posy -1, '_', FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+            screen.setPixel(posx - 1, posy, '|', FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+            screen.setPixel(posx + 1, posy, '|', FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        }
     }
 
 };

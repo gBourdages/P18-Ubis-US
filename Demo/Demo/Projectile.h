@@ -15,7 +15,11 @@ public:
     }
 
     void draw(Engine &screen) {
-        screen.setPixel(posx, posy, texture);
+        if (color == NULL)
+            screen.setPixel(posx, posy, texture);
+        else
+            screen.setPixel(posx, posy, texture, color);
+
         if(posy)
             posy = posy + speed;
 
