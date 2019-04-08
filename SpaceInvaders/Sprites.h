@@ -7,7 +7,7 @@
 #include <QTimer>
 
 class Sprites : public QObject, public QGraphicsPixmapItem {
-    Q_OBJECT
+Q_OBJECT
 protected:
     QMap<int, QPixmap> pixmap;
 
@@ -19,6 +19,10 @@ public:
     virtual void collided() {}
 
 public slots:
+
+signals:
+    void deleteThis(Sprites*);
+
 };
 
 #endif

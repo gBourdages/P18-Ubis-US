@@ -1,21 +1,3 @@
-﻿  Generate moc_predefs.h
-  MOC Display.h
-  MOC Game.h
-  MOC Projectile.h
-  MOC Ship.h
-  MOC Sprites.h
-  Display.cpp
-  Game.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\game.cpp(8): warning C4305: 'argument': truncation from 'double' to 'float'
-  Projectile.cpp
-  Ship.cpp
-  SpaceInvaders.cpp
-  Sprites.cpp
-  Weapon.cpp
-  moc_Display.cpp
-  moc_Game.cpp
-  moc_Projectile.cpp
-  moc_Ship.cpp
-  moc_Sprites.cpp
-  Generating Code...
+﻿  Ship.cpp
+d:\localhome\p18-ubis-us\spaceinvaders\ship.cpp(6): warning C4305: 'argument': truncation from 'double' to 'float'
   SpaceInvaders.vcxproj -> D:\LocalHome\P18-Ubis-US\SpaceInvaders\debug\SpaceInvaders.exe

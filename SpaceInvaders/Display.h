@@ -8,7 +8,7 @@
 
 class Display : public QGraphicsView {
 Q_OBJECT
-private:
+protected:
 
     QGraphicsScene* scene;
 
@@ -18,6 +18,7 @@ public:
     void addSprite(Sprites *s);
 
 public slots:
+    void removeSprites(Sprites* s);
 };
 
 #endif

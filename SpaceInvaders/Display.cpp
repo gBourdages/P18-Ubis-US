@@ -26,4 +26,15 @@ void Display::addSprite(Sprites* s) {
     scene->addItem(s);
 }
 
+void Display::removeSprites(Sprites* s) {
+    scene->removeItem(s);
+    delete s;
+
+}
+
+
+
+
+
+
 

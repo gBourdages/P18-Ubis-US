@@ -1,4 +1,5 @@
 #include "Projectile.h"
+#include <QDebug>
 
 
 
@@ -33,5 +34,5 @@ void Projectile::collided() {
 }
 
 Projectile::~Projectile() {
-
+    delete time;
 }

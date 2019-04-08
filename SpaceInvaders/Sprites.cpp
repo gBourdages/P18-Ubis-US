@@ -17,4 +17,8 @@ Sprites::~Sprites() {
 
 void Sprites::move(int mx, int my) {
     setPos(x() + mx, y() + my);
+    if (x() < -100 || x() > 2020 || y() < -100 || y() > 1200)
+        emit this->deleteThis(this);
+
+
 }
