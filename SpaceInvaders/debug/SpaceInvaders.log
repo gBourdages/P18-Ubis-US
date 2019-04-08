@@ -1,0 +1,3 @@
+﻿  Game.cpp
+d:\localhome\persorepo\spaceinvaders\game.cpp(8): warning C4305: 'argument': truncation from 'double' to 'float'
+  SpaceInvaders.vcxproj -> D:\LocalHome\PersoRepo\SpaceInvaders\debug\SpaceInvaders.exe
