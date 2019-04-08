@@ -5,7 +5,7 @@ Game::Game() {
     player1 = new Ship(500, 500);
     addSprite(player1);
 
-    tst = new Projectile("./ressources/bullet.png", 0.1, 1000, 700, -1, -1, 2);
+    tst = new Projectile("./ressources/bullet.png", 0.1, 500, 700, 0, -1, 2);
     addSprite(tst);
 }
 

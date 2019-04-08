@@ -7,11 +7,29 @@ Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsi
     this->speedY = speedY;
     time = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(animate()));
+    connect(time, SIGNAL(timeout()), this, SLOT(collide()));
     time->start(frameTime);
 }
 
 void Projectile::animate() {
     move(speedX, speedY);
+}
+
+void Projectile::collide() {
+    QList<QGraphicsItem*> list = collidingItems();
+    if (list.size()) {
+        for (QList<QGraphicsItem*>::iterator it = list.begin(); it != list.end(); ++it) {
+            Sprites* s = dynamic_cast<Sprites*>(*it);
+            s->collided();
+            this->collided();
+        }
+    }
+
+
+}
+
+void Projectile::collided() {
+    delete this;
 }
 
 Projectile::~Projectile() {
