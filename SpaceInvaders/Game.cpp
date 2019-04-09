@@ -5,18 +5,16 @@ Game::Game() {
     setBackgroundBrush(QPixmap("./ressources/SpaceInvadersBg.jpg"));
     player1 = new Ship(500, 500);
     addSprite(player1);
-    connect(player1, &Sprites::deleteThis, this, &Display::removeSprites);
 }
 
 Game::~Game() {
-
+    delete player1;
 }
-
-
 
 
 
 void Game::keyPressEvent(QKeyEvent* event) {
+    QList<Projectile*>* temp;
     switch (event->key()) {
     case Qt::Key_Left:
         player1->move(-10);
@@ -25,10 +23,10 @@ void Game::keyPressEvent(QKeyEvent* event) {
         player1->move(10);
         break;
     case Qt::Key_Space:
-        Projectile* temp;
         temp = player1->shoot();
-        connect(temp, &Sprites::deleteThis, this, &Display::removeSprites);
-        addSprite(temp);
+        for (QList<Projectile*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+            addSprite(*it);
+        }
         break;
     default:
         QWidget::keyPressEvent(event);

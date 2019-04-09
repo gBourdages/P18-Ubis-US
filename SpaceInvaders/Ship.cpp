@@ -3,7 +3,11 @@
 
 
 Ship::Ship(unsigned int posx, unsigned int posy) : Sprites("./ressources/AlexShip.png", 0.25, posx, posy, 0, PLAYER) {
-    one = new Weapon("./ressources/bullet.png", 0.1, 0, -1, 3, ALLYBULLET);
+    weapons[0] = new Default();
+    weapons[1] = new Laser();
+    this->life = 5;
+    this->shield = 0;
+    this->selectedWeapon = 1;
 }
 
 
@@ -16,12 +20,21 @@ void Ship::move(int mx) {
         setPos(x() + mx, y());
 }
 
-Projectile* Ship::shoot() {
-    return one->shoot(x(), y());
+QList<Projectile*>* Ship::shoot() {
+    return weapons[selectedWeapon]->shoot(x(), y());
 }
 
 void Ship::collided(unsigned int ID) {
-
+    switch (ID) {
+        case ENEMYBULLET :
+            if (shield)
+                shield -= 1;
+            else
+                life -= 1;
+            break;
+        case POWERUP :
+            shield += 5;
+    }
 }
 
 

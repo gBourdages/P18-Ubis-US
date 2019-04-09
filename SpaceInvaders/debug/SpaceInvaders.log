@@ -1,5 +1,5 @@
-﻿  Ship.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(25): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\ship.cpp(6): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\localhome\p18-ubis-us\spaceinvaders\ship.cpp(23): warning C4100: 'ID': unreferenced formal parameter
+﻿  Laser.cpp
+d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(26): warning C4100: 'ID': unreferenced formal parameter
+d:\localhome\p18-ubis-us\spaceinvaders\laser.cpp(5): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\localhome\p18-ubis-us\spaceinvaders\laser.cpp(6): warning C4305: 'argument': truncation from 'double' to 'float'
   SpaceInvaders.vcxproj -> D:\LocalHome\P18-Ubis-US\SpaceInvaders\debug\SpaceInvaders.exe

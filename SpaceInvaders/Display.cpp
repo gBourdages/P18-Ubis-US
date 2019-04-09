@@ -24,6 +24,7 @@ Display::~Display() {
 
 void Display::addSprite(Sprites* s) {
     scene->addItem(s);
+    connect(s, &Sprites::deleteThis, this, &Display::removeSprites);
 }
 
 void Display::removeSprites(Sprites* s) {

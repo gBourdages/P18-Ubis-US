@@ -3,13 +3,14 @@
 
 
 
-Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime, unsigned int ID) : Sprites(picturePath, s, posx, posy,50, ID) {
+Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime, unsigned int rot, unsigned int ID) : Sprites(picturePath, s, posx, posy, rot, ID) {
     this->speedX = speedX;
     this->speedY = speedY;
     time = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(animate()));
     connect(time, SIGNAL(timeout()), this, SLOT(collide()));
     time->start(frameTime);
+
 }
 
 void Projectile::animate() {

@@ -138,8 +138,13 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AllyBullet.cpp" />
+    <ClCompile Include="AllyLaser.cpp" />
+    <ClCompile Include="Default.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
@@ -147,6 +152,9 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllyBullet.h" />
+    <ClInclude Include="AllyLaser.h" />
+    <ClInclude Include="Default.h" />
     <CustomBuild Include="Display.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Display.h;release\moc_predefs.h;C:\Qt\5.12.1\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\5.12.1\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/LocalHome/P18-Ubis-US/SpaceInvaders/release/moc_predefs.h -IC:/Qt/5.12.1/msvc2017_64/mkspecs/win32-msvc -ID:/LocalHome/P18-Ubis-US/SpaceInvaders -IC:/Qt/5.12.1/msvc2017_64/include -IC:/Qt/5.12.1/msvc2017_64/include/QtWidgets -IC:/Qt/5.12.1/msvc2017_64/include/QtGui -IC:/Qt/5.12.1/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.1/msvc2017_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt" Display.h -o release\moc_Display.cpp</Command>
@@ -157,6 +165,7 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC Display.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_Display.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="EnemyBullet.h" />
     <CustomBuild Include="Game.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Game.h;release\moc_predefs.h;C:\Qt\5.12.1\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Qt\5.12.1\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/LocalHome/P18-Ubis-US/SpaceInvaders/release/moc_predefs.h -IC:/Qt/5.12.1/msvc2017_64/mkspecs/win32-msvc -ID:/LocalHome/P18-Ubis-US/SpaceInvaders -IC:/Qt/5.12.1/msvc2017_64/include -IC:/Qt/5.12.1/msvc2017_64/include/QtWidgets -IC:/Qt/5.12.1/msvc2017_64/include/QtGui -IC:/Qt/5.12.1/msvc2017_64/include/QtANGLE -IC:/Qt/5.12.1/msvc2017_64/include/QtCore -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt" Game.h -o release\moc_Game.cpp</Command>
@@ -197,6 +206,7 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC Sprites.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_Sprites.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="Laser.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>

@@ -9,18 +9,23 @@ Weapon::Weapon(const char *picturePath, float s, int speedX, int speedY, unsigne
     this->speedY = speedY;
     this->frametime = frameTime;
     this->ID = ID;
-    Projectile* loadHeight = new Projectile(picturePath, scale, 0, 0, speedX, speedY, frametime, ID);
-    this->height = loadHeight->boundingRect().height() * scale;
-    delete loadHeight;
+    this->mode = 1;
+    
+    
 }
-
 
 Weapon::~Weapon() {
 
 }
 
-Projectile*  Weapon::shoot(unsigned int posx, unsigned int posy) {
-    return new Projectile(picturePath, scale, posx, posy - height, speedX, speedY, frametime, ID);
+QList<Projectile*>*  Weapon::shoot(unsigned int posx, unsigned int posy) {
+    Projectile* p = new Projectile(picturePath, scale, posx, posy - height, speedX, speedY, frametime, 0, ID);
+    QList<Projectile*>* list = new QList<Projectile*>();
+    list->push_back(p);
+    return list;
+}
 
+void Weapon::setMode(unsigned int m) {
+    this->mode = m;
 }
 

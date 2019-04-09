@@ -24,3 +24,7 @@ void Sprites::move(int mx, int my) {
 
 
 }
+
+void Sprites::addPixmap(const char *picturePath, int ID) {
+    pixmap[ID] = QPixmap(picturePath);
+}
