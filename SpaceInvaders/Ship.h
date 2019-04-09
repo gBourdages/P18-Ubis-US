@@ -15,6 +15,7 @@ public:
     ~Ship();
     void move(int mx);
     Projectile* shoot();
+    void collided(unsigned int ID);
 
 public slots:
 };

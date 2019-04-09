@@ -2,8 +2,8 @@
 
 
 
-Ship::Ship(unsigned int posx, unsigned int posy) : Sprites("./ressources/AlexShip.png", 0.25, posx, posy) {
-    one = new Weapon("./ressources/bullet.png", 0.1, 0, -1, 3);
+Ship::Ship(unsigned int posx, unsigned int posy) : Sprites("./ressources/AlexShip.png", 0.25, posx, posy, 0, PLAYER) {
+    one = new Weapon("./ressources/bullet.png", 0.1, 0, -1, 3, ALLYBULLET);
 }
 
 
@@ -18,6 +18,10 @@ void Ship::move(int mx) {
 
 Projectile* Ship::shoot() {
     return one->shoot(x(), y());
+}
+
+void Ship::collided(unsigned int ID) {
+
 }
 
 

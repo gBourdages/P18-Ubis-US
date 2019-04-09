@@ -5,18 +5,24 @@
 #include <QGraphicsItem>
 #include <QMap>
 #include <QTimer>
+#define PLAYER 1
+#define MINION 2
+#define ALLYBULLET 3
+#define ENEMYBULLET 4
+#define POWERUP 5
+
 
 class Sprites : public QObject, public QGraphicsPixmapItem {
 Q_OBJECT
 protected:
     QMap<int, QPixmap> pixmap;
-
+    unsigned int ID;
 
 public:
-    Sprites(const char *picturePath, float s, unsigned int posx, unsigned int posy);
+    Sprites(const char *picturePath, float s, unsigned int posx, unsigned int posy, int rot, unsigned int ID);
     ~Sprites();
     void move(int mx, int my);
-    virtual void collided() {}
+    virtual void collided(unsigned int ID) {}
 
 public slots:
 

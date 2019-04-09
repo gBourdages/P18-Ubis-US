@@ -11,9 +11,9 @@ protected:
     QTimer* time;
 
 public:
-    Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime);
+    Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime, unsigned int ID);
     ~Projectile();
-    void collided();
+    void collided(unsigned int ID);
     
 public slots:
     void animate();

@@ -3,7 +3,7 @@
 
 
 
-Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime) : Sprites(picturePath, s, posx, posy) {
+Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime, unsigned int ID) : Sprites(picturePath, s, posx, posy,50, ID) {
     this->speedX = speedX;
     this->speedY = speedY;
     time = new QTimer();
@@ -21,16 +21,16 @@ void Projectile::collide() {
     if (list.size()) {
         for (QList<QGraphicsItem*>::iterator it = list.begin(); it != list.end(); ++it) {
             Sprites* s = dynamic_cast<Sprites*>(*it);
-            s->collided();
-            this->collided();
+            s->collided(ID);
+            this->collided(ID);
         }
     }
 
 
 }
 
-void Projectile::collided() {
-    delete this;
+void Projectile::collided(unsigned int ID) {
+    
 }
 
 Projectile::~Projectile() {
