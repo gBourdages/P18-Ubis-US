@@ -3,9 +3,7 @@
 #define BULLETSCALE 0.05
 
 #include "Projectile.h"
-class AllyBullet :
-	public Projectile
-{
+class AllyBullet : public Projectile {
 public:
 	AllyBullet(unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime);
 	~AllyBullet();

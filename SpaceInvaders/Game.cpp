@@ -11,6 +11,12 @@ Game::Game() {
     for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
         addSprite(*it);
     }
+    minions = new MinionsArray();
+    QList<Minion*>* temp1;
+    temp1 = minions->getArray();
+    for (QList<Minion*>::iterator it = temp1->begin(); it != temp1->end(); ++it) {
+        addSprite(*it);
+    }
 }
 
 Game::~Game() {
