@@ -1,5 +1,6 @@
 #ifndef ALLYBULLET_H
 #define ALLYBULLET_H
+#define BULLETSCALE 0.05
 
 #include "Projectile.h"
 class AllyBullet :

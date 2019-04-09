@@ -3,8 +3,14 @@
 
 Game::Game() {
     setBackgroundBrush(QPixmap("./ressources/SpaceInvadersBg.jpg"));
-    player1 = new Ship(500, 500);
+    player1 = new Ship(500, 900);
     addSprite(player1);
+    Maison h(200, 750);
+    QList<Block*>* temp;
+    temp = h.getMaison();
+    for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+        addSprite(*it);
+    }
 }
 
 Game::~Game() {
@@ -24,9 +30,12 @@ void Game::keyPressEvent(QKeyEvent* event) {
         break;
     case Qt::Key_Space:
         temp = player1->shoot();
-        for (QList<Projectile*>::iterator it = temp->begin(); it != temp->end(); ++it) {
-            addSprite(*it);
+        if(temp) {
+            for (QList<Projectile*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+                addSprite(*it);
+            }
         }
+        
         break;
     default:
         QWidget::keyPressEvent(event);

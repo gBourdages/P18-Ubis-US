@@ -16,6 +16,7 @@ protected:
     unsigned int mode;
     const char *picturePath;
     unsigned int height;
+    unsigned int width;
 
 public:
     Weapon(const char *picturePath, float s, int speedX, int speedY, unsigned int frameTime, unsigned int ID);

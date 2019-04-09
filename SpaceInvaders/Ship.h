@@ -14,6 +14,9 @@ private:
     unsigned int selectedWeapon;
     unsigned int shield;
     unsigned int life;
+    unsigned int width;
+    bool canShot;
+    QTimer* time;
 
 public:
     Ship(unsigned int posx, unsigned int posy);
@@ -23,6 +26,9 @@ public:
     void collided(unsigned int ID);
 
 public slots:
+    void canShoot();
+
+
 };
 
 #endif

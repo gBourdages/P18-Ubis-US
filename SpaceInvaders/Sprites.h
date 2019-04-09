@@ -11,6 +11,7 @@
 #define ENEMYBULLET 4
 #define POWERUP 5
 #define ALLYLASER 6
+#define BLOCK 7
 
 
 class Sprites : public QObject, public QGraphicsPixmapItem {
@@ -25,6 +26,7 @@ public:
     void move(int mx, int my);
     virtual void collided(unsigned int ID) {}
     void addPixmap(const char *picturePath, int ID);
+    unsigned int getID();
 
 public slots:
 

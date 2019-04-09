@@ -7,12 +7,22 @@ Ship::Ship(unsigned int posx, unsigned int posy) : Sprites("./ressources/AlexShi
     weapons[1] = new Laser();
     this->life = 5;
     this->shield = 0;
-    this->selectedWeapon = 1;
+    this->selectedWeapon = 0;
+    this->width = boundingRect().width() * 0.25;
+    this->canShot = true;
+    time = new QTimer();
+    connect(time, SIGNAL(timeout()), this, SLOT(canShoot()));
+    time->start(250);
+
 }
 
 
 Ship::~Ship() {
 
+}
+
+void Ship::canShoot() {
+    this->canShot = true;
 }
 
 void Ship::move(int mx) {
@@ -21,7 +31,12 @@ void Ship::move(int mx) {
 }
 
 QList<Projectile*>* Ship::shoot() {
-    return weapons[selectedWeapon]->shoot(x(), y());
+    if (canShot) {
+        canShot = false;
+        return weapons[selectedWeapon]->shoot(x() + width / 2, y());
+    }
+    return nullptr;
+    
 }
 
 void Ship::collided(unsigned int ID) {

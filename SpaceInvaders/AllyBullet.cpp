@@ -2,17 +2,20 @@
 
 
 
-AllyBullet::AllyBullet(unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime) : Projectile("./ressources/bullet.png", 0.25, posx, posy, speedX, speedY, frameTime, 0, ALLYBULLET) {
+AllyBullet::AllyBullet(unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime) : Projectile("./ressources/bullet.png", BULLETSCALE, posx, posy, speedX, speedY, frameTime, 0, ALLYBULLET) {
 
 }
 
-void AllyBullet::collided(unsigned int ID) {
-    switch (ID) {
+void AllyBullet::collided(unsigned int id) {
+    switch (id) {
     case ENEMYBULLET:
-        emit deleteThis(this);
+        emit this->deleteThis(this);
         break;
     case MINION:
-        emit deleteThis(this);
+        emit this->deleteThis(this);
+        break;
+    case BLOCK:
+        emit this->deleteThis(this);
         break;
     }
 }

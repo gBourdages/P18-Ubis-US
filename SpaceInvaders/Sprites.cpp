@@ -19,7 +19,7 @@ Sprites::~Sprites() {
 
 void Sprites::move(int mx, int my) {
     setPos(x() + mx, y() + my);
-    if (x() < -100 || x() > 2020 || y() < -100 || y() > 1200)
+    if (x() < -500 || x() > 2500 || y() < -500 || y() > 1500)
         emit this->deleteThis(this);
 
 
@@ -27,4 +27,8 @@ void Sprites::move(int mx, int my) {
 
 void Sprites::addPixmap(const char *picturePath, int ID) {
     pixmap[ID] = QPixmap(picturePath);
+}
+
+unsigned int Sprites::getID() {
+    return this->ID;
 }

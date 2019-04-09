@@ -20,19 +20,16 @@ void Projectile::animate() {
 void Projectile::collide() {
     QList<QGraphicsItem*> list = collidingItems();
     if (list.size()) {
+        unsigned int id;
         for (QList<QGraphicsItem*>::iterator it = list.begin(); it != list.end(); ++it) {
             Sprites* s = dynamic_cast<Sprites*>(*it);
-            s->collided(ID);
-            this->collided(ID);
+            id = s->getID();
+            s->collided(this->ID);
         }
+        this->collided(id);
     }
-
-
 }
 
-void Projectile::collided(unsigned int ID) {
-    
-}
 
 Projectile::~Projectile() {
     delete time;

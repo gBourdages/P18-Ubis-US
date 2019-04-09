@@ -1,5 +1,4 @@
-﻿  Laser.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(26): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\laser.cpp(5): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\localhome\p18-ubis-us\spaceinvaders\laser.cpp(6): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  Projectile.cpp
+d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
+d:\localhome\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
   SpaceInvaders.vcxproj -> D:\LocalHome\P18-Ubis-US\SpaceInvaders\debug\SpaceInvaders.exe
