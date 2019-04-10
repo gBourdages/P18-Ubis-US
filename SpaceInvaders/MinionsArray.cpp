@@ -9,6 +9,10 @@ MinionsArray::MinionsArray() {
             array->push_back(new Minion(x * 100 * MINIONSCALE+ 1980/10 , y * 100 * MINIONSCALE +1080/3));
         }
     }
+    this->direction = 1;
+    time = new QTimer();
+    connect(time, SIGNAL(timeout()), this, SLOT(move()));
+    time->start(1500);
 }
 
 
@@ -20,8 +24,15 @@ QList<Minion*>* MinionsArray::getArray() {
     return array;
 }
 
-void MinionsArray::move(int mx) {
+void MinionsArray::move() {
     for (QList<Minion*>::iterator it = array->begin(); it != array->end(); ++it) {
-        (*it)->move(mx);
+        if((*it))
+            (*it)->move(direction * MOUVEMENT);
     }
+    this->direction *= -1;
+}
+
+void MinionsArray::removeMinion(Sprites* s) {
+    Minion* m = dynamic_cast<Minion*>(s);
+    this->array->removeOne(m);
 }

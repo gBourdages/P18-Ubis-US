@@ -113,9 +113,9 @@
     <ClInclude Include="Minion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MinionsArray.h">
+    <CustomBuild Include="MinionsArray.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
     <CustomBuild Include="Projectile.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -146,6 +146,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Game.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_MinionsArray.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_MinionsArray.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_Projectile.cpp">

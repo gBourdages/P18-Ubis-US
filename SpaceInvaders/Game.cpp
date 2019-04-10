@@ -15,6 +15,7 @@ Game::Game() {
     QList<Minion*>* temp1;
     temp1 = minions->getArray();
     for (QList<Minion*>::iterator it = temp1->begin(); it != temp1->end(); ++it) {
+        connect((*it), &Sprites::deleteThis, minions, &MinionsArray::removeMinion);
         addSprite(*it);
     }
 }
