@@ -1,18 +1,7 @@
-﻿  MOC MinionsArray.h
-  Game.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
-  MinionsArray.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
-  SpaceInvaders.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
-  moc_Game.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
-  moc_MinionsArray.cpp
-d:\localhome\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
-d:\localhome\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
-  Generating Code...
-  SpaceInvaders.vcxproj -> D:\LocalHome\P18-Ubis-US\SpaceInvaders\debug\SpaceInvaders.exe
+﻿  MainWindow.cpp
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\spaceinvaders\sprites.h(27): warning C4100: 'ID': unreferenced formal parameter
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\spaceinvaders\projectile.h(16): warning C4100: 'ID': unreferenced formal parameter
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\spaceinvaders\mainwindow.cpp(217): warning C4189: 'ret': local variable is initialized but not referenced
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\spaceinvaders\mainwindow.cpp(263): warning C4189: 'ret': local variable is initialized but not referenced
+d:\_pc\documents\_education\universite\_session2\projet\github\p18-ubis-us\spaceinvaders\mainwindow.cpp(307): warning C4189: 'ret': local variable is initialized but not referenced
+  SpaceInvaders.vcxproj -> D:\_PC\Documents\_Education\Universite\_Session2\Projet\GitHub\P18-Ubis-US\SpaceInvaders\debug\SpaceInvaders.exe

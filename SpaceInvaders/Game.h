@@ -7,6 +7,7 @@
 #include "Maison.h"
 #include "MinionsArray.h"
 
+
 class Game : public Display {
 Q_OBJECT
 private:

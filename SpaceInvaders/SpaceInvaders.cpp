@@ -1,13 +1,16 @@
 #include <QApplication>
 
-#include "Game.h"
+#include "MainWindow.h"
 
 int main( int argc, char ** argv ) {
     QApplication app(argc, argv);
     
-    Game game;
+    //Game game;
 
-    game.show();
+    //game.show();
+
+    MenuWindow gui("Exam Invaders");
+    gui.show();
 
     app.exec();
 }
