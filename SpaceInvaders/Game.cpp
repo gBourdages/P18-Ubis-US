@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <QDebug>
 
+
 Game::Game(ControllerFPGA* fpga) {
     setBackgroundBrush(QPixmap("./ressources/SpaceInvadersBg.jpg"));
     player1 = new Ship(500, 900);
@@ -58,10 +59,12 @@ Game::Game(ControllerFPGA* fpga) {
     connect(timeShield, SIGNAL(timeout()), this, SLOT(shield()));
     timeShield->start(15000);
 
+
 }
 
-Game::~Game() {
-    delete player1;
+Game::~Game()
+{
+  delete player1;
 }
 
 void Game::laser() {
@@ -82,39 +85,40 @@ void Game::keyPressEvent(QKeyEvent* event) {
     QList<Projectile*>* temp;
     switch (event->key()) {
     case Qt::Key_Left:
-        player1->move(-10);
-        break;
+      player1->move(-10);
+      break;
     case Qt::Key_Right:
-        player1->move(10);
-        break;
+      player1->move(10);
+      break;
     case Qt::Key_Space:
-        temp = player1->shoot();
-        if(temp) {
-            for (QList<Projectile*>::iterator it = temp->begin(); it != temp->end(); ++it) {
-                addSprite(*it);
-            }
+      temp = player1->shoot();
+      if (temp) {
+        for (QList<Projectile*>::iterator it = temp->begin(); it != temp->end();
+             ++it) {
+          addSprite(*it);
         }
-        
-        break;
+      }
+
+      break;
     default:
-        QWidget::keyPressEvent(event);
-    }
+      QWidget::keyPressEvent(event);
+  }
 }
 
-void Game::checkFPGA() {
-    fpga->checkVoice();
-    if (fpga->getVoiceState() & PA) {
-        //ACTION
-    }
-    if (fpga->getVoiceState() & PE) {
-        //ACTION
-    }
-    if (fpga->getVoiceState() & PI) {
-        //ACTION
-    }
-    if (fpga->getVoiceState() & PO) {
-        //ACTION
-    }
-
+void
+Game::checkFPGA()
+{
+  fpga->checkVoice();
+  if (fpga->getVoiceState() & PA) {
+    // ACTION
+  }
+  if (fpga->getVoiceState() & PE) {
+    // ACTION
+  }
+  if (fpga->getVoiceState() & PU) {
+    // ACTION
+  }
+  if (fpga->getVoiceState() & PO) {
+    // ACTION
+  }
 }
-
