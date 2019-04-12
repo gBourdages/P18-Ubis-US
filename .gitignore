@@ -1,7 +1,8 @@
-/SpaceInvaders/.vs
-/SpaceInvaders/debug
-/SpaceInvaders/release
-/SpaceInvaders/SpaceInvaders.sln
-/SpaceInvaders/SpaceInvaders.vcxproj
-/SpaceInvaders/SpaceInvaders.vcxproj.filter
-/SpaceInvaders/SpaceInvaders.vcxproj.user
+.vs/
+Debug/
+debug/
+Release/
+release/
+*.sln
+*.vcxproj
+*.user
