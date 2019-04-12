@@ -7,3 +7,4 @@ release/
 *.vcxproj
 *.user
 build-*/
+*.filters
