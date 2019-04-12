@@ -3,6 +3,7 @@
 
 MenuWindow::MenuWindow(const char* titre)
 {
+    fpga = new ControllerFPGA;
   // init main window
   setWindowTitle(tr(titre));
   setMinimumSize(200, 150);
@@ -253,8 +254,7 @@ MenuWindow::Scores()
 
 
 void
-MenuWindow::Play()
-{
+MenuWindow::Play() {
   QMessageBox msgBox;
   msgBox.setText("Jouer");
   msgBox.setInformativeText("Vous avez appuyé sur le bouton jouer.");
@@ -263,14 +263,13 @@ MenuWindow::Play()
   int ret = msgBox.exec();
 
 
-  game = new Game;
+  game = new Game(fpga);
 
   game->show();
 }
 
 void
-MenuWindow::initCreditsPage()
-{
+MenuWindow::initCreditsPage() {
   CreditsPageWidget = new QWidget;
 
   buttonBackCredits = new QPushButton("Retour", this);

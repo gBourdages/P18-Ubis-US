@@ -10,8 +10,7 @@
 #include <QtWidgets>
 #include "Game.h"
 
-class MenuWindow : public QMainWindow
-{
+class MenuWindow : public QMainWindow {
   Q_OBJECT
 public:
   MenuWindow(const char* titre = 0);
@@ -48,6 +47,7 @@ private:
 
   QLabel* labelExamInvader;
   Game* game;
+  ControllerFPGA* fpga;
 
   QGroupBox* groupBoxVolume;
   QLabel* optionLabel;

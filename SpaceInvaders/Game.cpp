@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <QDebug>
 
-Game::Game() {
+Game::Game(ControllerFPGA* fpga) {
     setBackgroundBrush(QPixmap("./ressources/SpaceInvadersBg.jpg"));
     player1 = new Ship(500, 900);
     addSprite(player1);
@@ -18,6 +18,10 @@ Game::Game() {
         connect((*it), &Sprites::deleteThis, minions, &MinionsArray::removeMinion);
         addSprite(*it);
     }
+    this->fpga = fpga;
+    timefpga = new QTimer;
+    connect(timefpga, SIGNAL(timeout()), this, SLOT(checkFPGA()));
+    timefpga->start(2);
 }
 
 Game::~Game() {
@@ -47,5 +51,22 @@ void Game::keyPressEvent(QKeyEvent* event) {
     default:
         QWidget::keyPressEvent(event);
     }
+}
+
+void Game::checkFPGA() {
+    fpga->checkVoice();
+    if (fpga->getVoiceState() & A) {
+        //ACTION
+    }
+    if (fpga->getVoiceState() & E) {
+        //ACTION
+    }
+    if (fpga->getVoiceState() & I) {
+        //ACTION
+    }
+    if (fpga->getVoiceState() & O) {
+        //ACTION
+    }
+
 }
 
