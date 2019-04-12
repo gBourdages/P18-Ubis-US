@@ -54,6 +54,9 @@
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Maison.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -107,6 +110,9 @@
     <ClInclude Include="Laser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <CustomBuild Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="Maison.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -146,6 +152,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Game.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_MainWindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_MainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_MinionsArray.cpp">
