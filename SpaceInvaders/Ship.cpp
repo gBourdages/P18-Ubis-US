@@ -7,13 +7,12 @@ Ship::Ship(unsigned int posx, unsigned int posy) : Sprites("./ressources/AlexShi
     weapons[1] = new Laser();
     this->life = 5;
     this->shield = 0;
-    this->selectedWeapon = 0;
+    this->selectedWeapon = 1;
     this->width = boundingRect().width() * 0.25;
     this->canShot = true;
     time = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(canShoot()));
     time->start(250);
-
 }
 
 
