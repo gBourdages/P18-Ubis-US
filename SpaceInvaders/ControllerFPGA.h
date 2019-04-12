@@ -7,10 +7,10 @@
 
 using namespace std;
 
-#define A 0b00000001 
-#define E 0b00000010
-#define I 0b00000100
-#define O 0b00001000
+#define PA 0b00000001 
+#define PE 0b00000010
+#define PI 0b00000100
+#define PO 0b00001000
 
 // numeros de registres correspondants pour les echanges FPGA <-> PC ... 
 unsigned const int nreg_lect_stat_btn = 0; // fpga -> PC Statut et BTN lus FPGA -> PC 
@@ -74,7 +74,7 @@ public:
 
             if (CAN0 >= 0x60 && ancCAN0 < 0x60) {
                 ancCAN0 = CAN0;
-                returnVal |= A;
+                returnVal |= PA;
             }
             else if (CAN0 < 0x60) {
                 ancCAN0 = 0;
@@ -82,7 +82,7 @@ public:
 
             if (CAN1 >= 0x60 && ancCAN1 < 0x60) {
                 ancCAN1 = CAN1;
-                returnVal |= E;
+                returnVal |= PE;
             }
             else if (CAN1 < 0x60) {
                 ancCAN1 = 0;
@@ -90,7 +90,7 @@ public:
 
             if (CAN2 >= 0x60 && ancCAN2 < 0x60) {
                 ancCAN2 = CAN2;
-                returnVal |= I;
+                returnVal |= PI;
             }
             else if (CAN2 < 0x60) {
                 ancCAN2 = 0;
@@ -98,7 +98,7 @@ public:
 
             if (CAN3 >= 0x60 && ancCAN3 < 0x60) {
                 ancCAN3 = CAN3;
-                returnVal |= O;
+                returnVal |= PO;
             }
             else if (CAN3 < 0x60) {
                 ancCAN3 = 0;

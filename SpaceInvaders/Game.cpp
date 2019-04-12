@@ -19,7 +19,7 @@ Game::Game(ControllerFPGA* fpga) {
         addSprite(*it);
     }
     this->fpga = fpga;
-    timefpga = new QTimer;
+    timefpga = new QTimer();
     connect(timefpga, SIGNAL(timeout()), this, SLOT(checkFPGA()));
     timefpga->start(2);
 }
@@ -55,16 +55,16 @@ void Game::keyPressEvent(QKeyEvent* event) {
 
 void Game::checkFPGA() {
     fpga->checkVoice();
-    if (fpga->getVoiceState() & A) {
+    if (fpga->getVoiceState() & PA) {
         //ACTION
     }
-    if (fpga->getVoiceState() & E) {
+    if (fpga->getVoiceState() & PE) {
         //ACTION
     }
-    if (fpga->getVoiceState() & I) {
+    if (fpga->getVoiceState() & PI) {
         //ACTION
     }
-    if (fpga->getVoiceState() & O) {
+    if (fpga->getVoiceState() & PO) {
         //ACTION
     }
 

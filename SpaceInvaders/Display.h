@@ -15,10 +15,11 @@ protected:
 public:
     Display();
     ~Display();
-    void addSprite(Sprites *s);
+    
 
 public slots:
     void removeSprites(Sprites* s);
+    void addSprite(Sprites *s);
 };
 
 #endif

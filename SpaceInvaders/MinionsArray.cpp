@@ -4,15 +4,20 @@
 
 MinionsArray::MinionsArray() {
     array = new QList<Minion*>();
-    for (int x = 0; x < 10; x+=1) {
-        for (int y = 0; y < 3; y+=1) {
-            array->push_back(new Minion(x * 100 * MINIONSCALE+ 1980/10 , y * 100 * MINIONSCALE +1080/3));
+    for (int x = 1; x <= 13; ++x) {
+        for (int y = 1; y <= 3; ++y) {
+            array->push_back(new Minion(x * (1900/13) - 130 , 125 * y - 50));
         }
     }
     this->direction = 1;
     time = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(move()));
     time->start(1500);
+
+    shooting = new QTimer();
+    connect(shooting, SIGNAL(timeout()), this, SLOT(shoot()));
+    shooting->start(1000);
+    srand(std::time(0));
 }
 
 
@@ -35,4 +40,19 @@ void MinionsArray::move() {
 void MinionsArray::removeMinion(Sprites* s) {
     Minion* m = dynamic_cast<Minion*>(s);
     this->array->removeOne(m);
+}
+
+void MinionsArray::shoot() {
+    int random = rand() % array->size();
+    int i = 0;
+    for (QList<Minion*>::iterator it = array->begin(); it != array->end(); ++it) {
+        if (i == random) {
+            Projectile* p = (*it)->shoot();
+            Sprites* s = dynamic_cast<Minion*>((*it)->shoot())));
+
+            addSprites(s);
+            break;
+        }
+        i++;
+    }
 }

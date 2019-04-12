@@ -13,7 +13,7 @@ public:
     Minion(unsigned int posx, unsigned int posy);
     ~Minion();
     void move(int mx);
-    QList<Projectile*>* shoot();
+    Projectile* shoot();
     void collided(unsigned int ID);
 };
 

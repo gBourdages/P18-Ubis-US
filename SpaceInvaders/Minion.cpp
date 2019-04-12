@@ -17,7 +17,7 @@ void Minion::move(int mx) {
         setPos(x() + mx, y());
 }
 
-QList<Projectile*>* Minion::shoot() {
+Projectile* Minion::shoot() {
 
         return weapon->shoot(x() + width / 2, y());
 
