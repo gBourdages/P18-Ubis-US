@@ -36,11 +36,13 @@ MenuWindow::initHomePage()
   // Cr�ation des Widgets
   labelExamInvader = new QLabel("Exam Invader", this);
   labelExamInvader->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
+
   buttonOptions = new QPushButton("Options", this);
   buttonScores = new QPushButton("Scores", this);
   buttonPlay = new QPushButton("Jouer", this);
   buttonCredits = new QPushButton("Crédits", this);
   buttonExit = new QPushButton("Quitter", this);
+
   // Cr�ation des liens
   connect(buttonOptions, &QPushButton::clicked, this, &MenuWindow::Options);
   connect(buttonScores, &QPushButton::clicked, this, &MenuWindow::Scores);
@@ -167,14 +169,16 @@ MenuWindow::Scores()
 void
 MenuWindow::Play()
 {
-  QMessageBox msgBox;
-  msgBox.setText("Jouer");
-  msgBox.setInformativeText("Vous avez appuyé sur le bouton jouer.");
-  msgBox.setStandardButtons(QMessageBox::Ok);
-  msgBox.setDefaultButton(QMessageBox::Ok);
-  int ret = msgBox.exec();
+	bool ok;
+	QString text;
 
-  game = new Game(fpga);
+	while (!ok || text.isEmpty()) {
+		text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
+			tr("Entrez votre pseudonyme:"), QLineEdit::Normal,
+			QDir::home().dirName(), &ok);
+	}
+
+  game = new Game(fpga, text);
 
   game->show();
 }

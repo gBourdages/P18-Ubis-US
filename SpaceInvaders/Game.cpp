@@ -2,7 +2,10 @@
 #include <QDebug>
 
 
-Game::Game(ControllerFPGA* fpga) {
+Game::Game(ControllerFPGA* fpga, QString name) {
+	playerName = name;
+	score = 0;
+
     setBackgroundBrush(QPixmap("./ressources/SpaceInvadersBg.jpg"));
     player1 = new Ship(500, 900);
     addSprite(player1);
@@ -121,4 +124,20 @@ Game::checkFPGA()
   if (fpga->getVoiceState() & PO) {
     // ACTION
   }
+}
+
+void Game::closeEvent(QCloseEvent *event)
+{
+	saveScore();
+}
+
+void Game::saveScore() {
+	QFile file("scores.txt");
+	if (!file.open(QIODevice::Append)) {
+		qDebug() << "Couldn't open score file";
+		return;
+	}
+	
+	file.write(('\n' + playerName + ' ' + score).toUtf8());
+	file.close();
 }

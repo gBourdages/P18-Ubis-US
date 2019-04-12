@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <QKeyEvent>
+#include <QCloseEvent>
 #include "Display.h"
 #include "Ship.h"
 #include "Maison.h"
@@ -19,12 +20,20 @@ private:
     QTimer* timefpga;
     QTimer* timeShield;
     QTimer* timeLaser;
+	QString playerName;
+	quint64 score;
 
 public:
-    Game(ControllerFPGA* fpga);
-    ~Game();
+    Game(ControllerFPGA* fpga, QString name);
+    virtual ~Game();
     void keyPressEvent(QKeyEvent* event) override;
-    
+
+private slots:
+	void saveScore();
+
+protected slots:
+	void closeEvent(QCloseEvent* event) override;
+
 public slots:
     void checkFPGA();
     void laser();

@@ -19,9 +19,9 @@ void Projectile::animate() {
 }
 
 void Projectile::collide() {
-    QTime time = QTime::currentTime();
+    //QTime time = QTime::currentTime();
     QList<QGraphicsItem*> list = collidingItems(Qt::IntersectsItemBoundingRect);
-    qDebug() << time.elapsed();
+    //qDebug() << time.elapsed();
     if (list.size()) {
         unsigned int id;
         for (QList<QGraphicsItem*>::iterator it = list.begin(); it != list.end(); ++it) {
