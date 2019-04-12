@@ -138,6 +138,8 @@ void Game::saveScore() {
 		return;
 	}
 	
-	file.write(('\n' + playerName + ' ' + score).toUtf8());
+	file.setTextModeEnabled(true);
+	file.write(('\n' + playerName + ' ' + QString::number(score)).toUtf8());
 	file.close();
+	qDebug() << "Scores saved";
 }

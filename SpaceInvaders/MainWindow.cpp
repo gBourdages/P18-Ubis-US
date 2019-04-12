@@ -139,16 +139,6 @@ MenuWindow::initScoresPage()
   textScores = new QTextEdit("Scores");
   textScores->setDisabled(true);
 
-  auto scores = readScores().split("\n");
-  scores.removeAll("");
-  if (scores.length() > 0) {
-    for (auto score : scores) {
-      textScores->append(score);
-    }
-  } else {
-    textScores->append("Aucun score n'a été encore enregistré");
-  }
-
   connect(buttonBackScores, &QPushButton::clicked, this, &MenuWindow::back);
 
   QGridLayout* layout = new QGridLayout;
@@ -163,24 +153,39 @@ MenuWindow::initScoresPage()
 void
 MenuWindow::Scores()
 {
-  m_MasterWidget->setCurrentIndex(2);
+	auto scores = readScores().split("\n");
+	scores.removeAll("");
+	if (scores.length() > 0) {
+		for (auto score : scores) {
+			textScores->append(score);
+		}
+	}
+	else {
+		textScores->append("Aucun score n'a été encore enregistré");
+	}
+
+	m_MasterWidget->setCurrentIndex(2);
 }
 
 void
 MenuWindow::Play()
 {
 	bool ok;
-	QString text;
-
-	while (!ok || text.isEmpty()) {
-		text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
+	QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
 			tr("Entrez votre pseudonyme:"), QLineEdit::Normal,
 			QDir::home().dirName(), &ok);
+	
+	if (!ok) {
+		return;
 	}
 
-  game = new Game(fpga, text);
+	if (text.isEmpty()) {
+		text = "Defender007";
+	}
 
-  game->show();
+	game = new Game(fpga, text);
+
+	game->show();
 }
 
 void
@@ -234,5 +239,8 @@ MenuWindow::readScores()
     return {};
   }
 
-  return file.readAll();
+  QString scores = file.readAll();
+  file.close();
+  qDebug() << scores;
+  return scores;
 }
