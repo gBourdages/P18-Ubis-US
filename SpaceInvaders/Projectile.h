@@ -9,7 +9,6 @@ protected:
     int speedX;
     int speedY;
     QTimer* time;
-    QTimer* colTime;
 
 public:
     Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime,unsigned int rot, unsigned int ID);

@@ -1,6 +1,6 @@
 #ifndef MINIONSARRAY_H
 #define MINIONSARRAY_H
-#define MOUVEMENT 30
+#define MOUVEMENT 70
 #include "Minion.h"
 #include <QList>
 #include <ctime>

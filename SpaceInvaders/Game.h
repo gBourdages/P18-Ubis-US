@@ -7,6 +7,7 @@
 #include "Maison.h"
 #include "MinionsArray.h"
 #include "ControllerFPGA.h"
+#include "PowerUp.h"
 
 
 class Game : public Display {
@@ -16,6 +17,8 @@ private:
     MinionsArray* minions;
     ControllerFPGA* fpga;
     QTimer* timefpga;
+    QTimer* timeShield;
+    QTimer* timeLaser;
 
 public:
     Game(ControllerFPGA* fpga);
@@ -24,6 +27,8 @@ public:
     
 public slots:
     void checkFPGA();
+    void laser();
+    void shield();
 
 };
 

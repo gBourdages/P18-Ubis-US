@@ -23,6 +23,12 @@ void EnemyBullet::collided(unsigned int id) {
     case PLAYER:
         emit this->deleteThis(this);
         break;
+    case POWERUPLASER:
+        emit this->deleteThis(this);
+        break;
+    case POWERUPSHIELD:
+        emit this->deleteThis(this);
+        break;
     }
 }
 

@@ -3,9 +3,9 @@
 
 
 Minion::Minion(unsigned int posx, unsigned int posy) : Sprites("./ressources/enemy.png", MINIONSCALE, posx, posy, 0, MINION) {
-    this->life = 2;
-    this->width = boundingRect().width() * MINIONSCALE;
-    this->height = boundingRect().height() * MINIONSCALE;
+    this->life = 5;
+    this->width = boundingRect().width();
+    this->height = boundingRect().height();
     weapon = new EnemyWeapon();
 }
 
