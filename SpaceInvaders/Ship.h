@@ -17,6 +17,7 @@ private:
     unsigned int width;
     bool canShot;
     QTimer* time;
+    QTimer* timeLaser;
 
 public:
     Ship(unsigned int posx, unsigned int posy);
@@ -27,6 +28,7 @@ public:
 
 public slots:
     void canShoot();
+    void defaultWeapon();
 
 
 };

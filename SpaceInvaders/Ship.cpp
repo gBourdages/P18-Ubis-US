@@ -5,14 +5,19 @@
 Ship::Ship(unsigned int posx, unsigned int posy) : Sprites("./ressources/AlexShip.png", 0.25, posx, posy, 0, PLAYER) {
     weapons[0] = new Default();
     weapons[1] = new Laser();
+    QSize size = QPixmap("./ressources/shield.png").size();
+    pixmap[2] = QPixmap("./ressources/shield.png").scaled(size.width()*scale, size.height()*scale);
     this->life = 5;
     this->shield = 0;
-    this->selectedWeapon = 1;
+    this->selectedWeapon = 0;
     this->width = boundingRect().width() * 0.25;
     this->canShot = true;
     time = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(canShoot()));
     time->start(250);
+
+    timeLaser = new QTimer();
+    connect(timeLaser, SIGNAL(timeout()), this, SLOT(defaultWeapon()));
 }
 
 
@@ -41,14 +46,29 @@ QList<Projectile*>* Ship::shoot() {
 void Ship::collided(unsigned int ID) {
     switch (ID) {
         case ENEMYBULLET :
-            if (shield)
+            if (shield) {
                 shield -= 1;
+                if(!shield)
+                    setPixmap(pixmap[1]);
+            }
+                
             else
                 life -= 1;
             break;
-        case POWERUP :
+        case POWERUPSHIELD :
             shield += 5;
+            setPixmap(pixmap[2]);
+            break;
+        case POWERUPLASER:
+            selectedWeapon = 1;
+            timeLaser->start(5000);
+            break;
+        
     }
+}
+
+void Ship::defaultWeapon() {
+    selectedWeapon = 0;
 }
 
 

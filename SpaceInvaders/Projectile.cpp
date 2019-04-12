@@ -8,11 +8,9 @@ Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsi
     this->speedX = speedX;
     this->speedY = speedY;
     time = new QTimer();
-    colTime = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(animate()));
-    connect(colTime, SIGNAL(timeout()), this, SLOT(collide()));
+    connect(time, SIGNAL(timeout()), this, SLOT(collide()));
     time->start(frameTime);
-    colTime->start(frameTime);
 
 }
 
@@ -38,5 +36,4 @@ void Projectile::collide() {
 
 Projectile::~Projectile() {
     delete time;
-    delete colTime;
 }

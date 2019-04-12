@@ -16,7 +16,7 @@ MinionsArray::MinionsArray() {
 
     shooting = new QTimer();
     connect(shooting, SIGNAL(timeout()), this, SLOT(shoot()));
-    shooting->start(250);
+    shooting->start(800);
     srand(std::time(0));
 }
 

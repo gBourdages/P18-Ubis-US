@@ -5,12 +5,38 @@ Game::Game(ControllerFPGA* fpga) {
     setBackgroundBrush(QPixmap("./ressources/SpaceInvadersBg.jpg"));
     player1 = new Ship(500, 900);
     addSprite(player1);
-    Maison h(200, 750);
+    
     QList<Block*>* temp;
-    temp = h.getMaison();
+    Maison a(300, 750);
+    temp = a.getMaison();
     for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
         addSprite(*it);
     }
+
+    Maison b(600, 750);
+    temp = b.getMaison();
+    for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+        addSprite(*it);
+    }
+
+    Maison c(900, 750);
+    temp = c.getMaison();
+    for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+        addSprite(*it);
+    }
+
+    Maison d(1200, 750);
+    temp = d.getMaison();
+    for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+        addSprite(*it);
+    }
+
+    Maison e(1500, 750);
+    temp = e.getMaison();
+    for (QList<Block*>::iterator it = temp->begin(); it != temp->end(); ++it) {
+        addSprite(*it);
+    }
+
     minions = new MinionsArray();
     connect(minions, &MinionsArray::addSprites, this, &Display::addSprite);
     QList<Minion*>* temp1;
@@ -23,10 +49,31 @@ Game::Game(ControllerFPGA* fpga) {
     timefpga = new QTimer();
     connect(timefpga, SIGNAL(timeout()), this, SLOT(checkFPGA()));
     timefpga->start(2);
+
+    timeLaser = new QTimer();
+    connect(timeLaser, SIGNAL(timeout()), this, SLOT(laser()));
+    timeLaser->start(67000);
+
+    timeShield = new QTimer();
+    connect(timeShield, SIGNAL(timeout()), this, SLOT(shield()));
+    timeShield->start(15000);
+
 }
 
 Game::~Game() {
     delete player1;
+}
+
+void Game::laser() {
+    int randomx = rand() % 1800 - 100;
+
+    addSprite(new PowerUp(POWERUPLASER, randomx, 500));
+}
+
+void Game::shield() {
+    int randomx = rand() % 1800 - 100;
+
+    addSprite(new PowerUp(POWERUPSHIELD, randomx, 500));
 }
 
 

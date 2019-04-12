@@ -9,7 +9,8 @@
 #define MINION 2
 #define ALLYBULLET 3
 #define ENEMYBULLET 4
-#define POWERUP 5
+#define POWERUPSHIELD 5
+#define POWERUPLASER 8
 #define ALLYLASER 6
 #define BLOCK 7
 
@@ -19,6 +20,7 @@ Q_OBJECT
 protected:
     QMap<int, QPixmap> pixmap;
     unsigned int ID;
+    float scale;
 
 public:
     Sprites(const char *picturePath, float s, unsigned int posx, unsigned int posy, int rot, unsigned int ID);
