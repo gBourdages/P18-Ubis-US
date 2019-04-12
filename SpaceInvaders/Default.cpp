@@ -2,8 +2,8 @@
 
 Default::Default() : Weapon("./ressources/bullet.png", BULLETSCALE, 0, -10, 10, ALLYBULLET) {
     Projectile* load = new Projectile(picturePath, BULLETSCALE, 0, 0, speedX, speedY, frametime, 0, ID);
-    this->height = load->boundingRect().height() * BULLETSCALE;
-    this->width = load->boundingRect().width() * BULLETSCALE;
+    this->height = load->boundingRect().height();
+    this->width = load->boundingRect().width();
     delete load;
 }
 

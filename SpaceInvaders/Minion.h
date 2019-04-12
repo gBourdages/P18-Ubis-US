@@ -9,6 +9,7 @@ private:
     Weapon* weapon;
     unsigned int life;
     unsigned int width;
+    unsigned int height;
 public:
     Minion(unsigned int posx, unsigned int posy);
     ~Minion();

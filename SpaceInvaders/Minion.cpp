@@ -4,7 +4,8 @@
 
 Minion::Minion(unsigned int posx, unsigned int posy) : Sprites("./ressources/enemy.png", MINIONSCALE, posx, posy, 0, MINION) {
     this->life = 2;
-    this->width = boundingRect().width() * 0.25;
+    this->width = boundingRect().width() * MINIONSCALE;
+    this->height = boundingRect().height() * MINIONSCALE;
     weapon = new EnemyWeapon();
 }
 
@@ -19,7 +20,7 @@ void Minion::move(int mx) {
 
 Projectile* Minion::shoot() {
 
-        return weapon->shoot(x() + width / 2, y());
+        return weapon->shoot(x() + width/2, y() + height)->front();
 
 }
 

@@ -5,9 +5,10 @@
 
 
 Sprites::Sprites(const char *picturePath, float s, unsigned int posx, unsigned int posy, int rot, unsigned int ID) {
-    pixmap[1] = QPixmap(picturePath);
+    QSize size = QPixmap(picturePath).size();
+
+    pixmap[1] = QPixmap(picturePath).scaled(size.width()*s, size.height()*s);
     setPixmap(pixmap[1]);
-    setScale(s);
     setRotation(rot);
     setPos(posx, posy);
     this->ID = ID;

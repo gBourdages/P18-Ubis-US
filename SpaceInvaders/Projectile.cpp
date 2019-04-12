@@ -1,5 +1,6 @@
 #include "Projectile.h"
 #include <QDebug>
+#include <QTime>
 
 
 
@@ -7,9 +8,11 @@ Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsi
     this->speedX = speedX;
     this->speedY = speedY;
     time = new QTimer();
+    colTime = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(animate()));
-    connect(time, SIGNAL(timeout()), this, SLOT(collide()));
+    connect(colTime, SIGNAL(timeout()), this, SLOT(collide()));
     time->start(frameTime);
+    colTime->start(frameTime);
 
 }
 
@@ -18,7 +21,9 @@ void Projectile::animate() {
 }
 
 void Projectile::collide() {
-    QList<QGraphicsItem*> list = collidingItems();
+    QTime time = QTime::currentTime();
+    QList<QGraphicsItem*> list = collidingItems(Qt::IntersectsItemBoundingRect);
+    qDebug() << time.elapsed();
     if (list.size()) {
         unsigned int id;
         for (QList<QGraphicsItem*>::iterator it = list.begin(); it != list.end(); ++it) {
@@ -33,4 +38,5 @@ void Projectile::collide() {
 
 Projectile::~Projectile() {
     delete time;
+    delete colTime;
 }

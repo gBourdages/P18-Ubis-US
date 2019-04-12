@@ -11,6 +11,9 @@ void EnemyBullet::collided(unsigned int id) {
     case ALLYBULLET:
         emit this->deleteThis(this);
         break;
+    case ENEMYBULLET:
+        emit this->deleteThis(this);
+        break;
     case MINION:
         emit this->deleteThis(this);
         break;

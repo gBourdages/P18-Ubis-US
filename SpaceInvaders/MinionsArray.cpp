@@ -16,7 +16,7 @@ MinionsArray::MinionsArray() {
 
     shooting = new QTimer();
     connect(shooting, SIGNAL(timeout()), this, SLOT(shoot()));
-    shooting->start(1000);
+    shooting->start(250);
     srand(std::time(0));
 }
 
@@ -43,16 +43,15 @@ void MinionsArray::removeMinion(Sprites* s) {
 }
 
 void MinionsArray::shoot() {
-    int random = rand() % array->size();
+    int random = rand() % (array->size() - 1);
+    addSprites(dynamic_cast<Sprites*>(array->at(random)->shoot()));
+    /*
     int i = 0;
     for (QList<Minion*>::iterator it = array->begin(); it != array->end(); ++it) {
         if (i == random) {
-            Projectile* p = (*it)->shoot();
-            Sprites* s = dynamic_cast<Minion*>((*it)->shoot())));
-
-            addSprites(s);
-            break;
+            addSprites(dynamic_cast<Sprites*>((*it)->shoot()));    
         }
         i++;
     }
+    */
 }

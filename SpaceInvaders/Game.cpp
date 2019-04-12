@@ -12,6 +12,7 @@ Game::Game(ControllerFPGA* fpga) {
         addSprite(*it);
     }
     minions = new MinionsArray();
+    connect(minions, &MinionsArray::addSprites, this, &Display::addSprite);
     QList<Minion*>* temp1;
     temp1 = minions->getArray();
     for (QList<Minion*>::iterator it = temp1->begin(); it != temp1->end(); ++it) {
