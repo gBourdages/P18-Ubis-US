@@ -8,3 +8,4 @@ release/
 *.user
 build-*/
 *.filters
+*.db
