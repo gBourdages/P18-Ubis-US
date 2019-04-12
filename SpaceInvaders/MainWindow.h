@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "Game.h"
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QPushButton>
@@ -8,9 +9,9 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QtWidgets>
-#include "Game.h"
 
-class MenuWindow : public QMainWindow {
+class MenuWindow : public QMainWindow
+{
   Q_OBJECT
 public:
   MenuWindow(const char* titre = 0);
@@ -29,11 +30,9 @@ private slots:
   void initOptionsPage();
   void initScoresPage();
   void initCreditsPage();
+  QString readScores();
 
 private:
-  // QWidget *widget;
-  // QVBoxLayout *layout;
-
   QPushButton* buttonOptions;
   QPushButton* buttonScores;
   QPushButton* buttonPlay;
@@ -56,12 +55,6 @@ private:
 
   QTextEdit* textScores;
   QTextEdit* textCredits;
-
-
-  
-
-  //  QGraphicsScene* welcomeScene;
-  //  QGraphicsView* view;
 
   QStackedWidget* m_MasterWidget;
   QWidget* m_homePage;
