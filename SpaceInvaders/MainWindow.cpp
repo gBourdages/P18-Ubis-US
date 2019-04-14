@@ -114,13 +114,38 @@ MenuWindow::initOptionsPage()
 void
 MenuWindow::calibration()
 {
-  QMessageBox msgBox;
-  msgBox.setText("Calibration");
-  msgBox.setInformativeText(
-    "Vous avez appuyé sur le bouton calibration, pour calibrer les phonèmes.");
-  msgBox.setStandardButtons(QMessageBox::Ok);
-  msgBox.setDefaultButton(QMessageBox::Ok);
-  int ret = msgBox.exec();
+ // QMessageBox msgBox;
+  //msgBox.setText("Calibration");
+ // msgBox.setInformativeText(
+  //  "Vous avez appuyé sur le bouton calibration, pour calibrer les phonèmes.");
+  //msgBox.setStandardButtons(QMessageBox::Ok);
+ // msgBox.setDefaultButton(QMessageBox::Ok);
+  //int ret = msgBox.exec();
+	CalibPageWidget = new QWidget;
+
+  btnA = new QPushButton("btnA", this);
+  btnE = new QPushButton("btnE", this);
+  btnU = new QPushButton("btnU", this);
+  btnO = new QPushButton("btnO", this);
+
+
+  //connect(buttonBackCredits, &QPushButton::clicked, this, &MenuWindow::back);
+
+  QGridLayout* layout = new QGridLayout;
+  layout = new QGridLayout;
+  layout->addWidget(btnA, 1, 1, 1, 1);
+  connect(btnA, &QPushButton::clicked, this, &MenuWindow::fnA);
+  layout->addWidget(btnE, 1, 2, 1, 1);
+  connect(btnE, &QPushButton::clicked, this, &MenuWindow::fnE);
+  layout->addWidget(btnU, 2, 3, 1, 1);
+  connect(btnU, &QPushButton::clicked, this, &MenuWindow::fnI);
+  layout->addWidget(btnO, 2, 4, 1, 1);
+  connect(btnO, &QPushButton::clicked, this, &MenuWindow::fnO);
+  CalibPageWidget->setLayout(layout);
+  CalibPageWidget->show();
+  
+  /// ajoutter les appels a la calibration. ajoutter bouttons A O E U 
+
 }
 
 void
@@ -139,6 +164,16 @@ MenuWindow::initScoresPage()
   textScores = new QTextEdit("Scores");
   textScores->setDisabled(true);
 
+  auto scores = readScores().split("\n");
+  scores.removeAll("");
+  if (scores.length() > 0) {
+    for (auto score : scores) {
+      textScores->append(score);
+    }
+  } else {
+    textScores->append("Aucun score n'a été encore enregistré");
+  }
+
   connect(buttonBackScores, &QPushButton::clicked, this, &MenuWindow::back);
 
   QGridLayout* layout = new QGridLayout;
@@ -153,39 +188,24 @@ MenuWindow::initScoresPage()
 void
 MenuWindow::Scores()
 {
-	auto scores = readScores().split("\n");
-	scores.removeAll("");
-	if (scores.length() > 0) {
-		for (auto score : scores) {
-			textScores->append(score);
-		}
-	}
-	else {
-		textScores->append("Aucun score n'a été encore enregistré");
-	}
-
-	m_MasterWidget->setCurrentIndex(2);
+  m_MasterWidget->setCurrentIndex(2);
 }
 
 void
 MenuWindow::Play()
 {
 	bool ok;
-	QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
+	QString text;
+
+	while (!ok || text.isEmpty()) {
+		text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
 			tr("Entrez votre pseudonyme:"), QLineEdit::Normal,
 			QDir::home().dirName(), &ok);
-	
-	if (!ok) {
-		return;
 	}
 
-	if (text.isEmpty()) {
-		text = "Defender007";
-	}
+  game = new Game(fpga, text);
 
-	game = new Game(fpga, text);
-
-	game->show();
+  game->show();
 }
 
 void
@@ -238,9 +258,33 @@ MenuWindow::readScores()
     qDebug() << "Didn't find file";
     return {};
   }
+  return file.readAll();
+}
 
-  QString scores = file.readAll();
-  file.close();
-  qDebug() << scores;
-  return scores;
+void
+MenuWindow::fnA(){
+	//int samples = 10;
+	//if (samples > 0) {
+	//	QTimer *timer = new QTimer(this);
+	//	connect(timer, SIGNAL(timeout()), this, samples = samples -1);
+	//	timer->start(10);
+	//}
+	A = fpga->calibA();
+	qDebug() << "CalibrationA" << A << endl;
+}
+void
+MenuWindow::fnE() {
+
+	E = fpga->calibE();
+	qDebug() << "CalibrationE" <<  E << endl;
+}
+void
+MenuWindow::fnI() {
+	qDebug() << "CalibrationI" << I << endl;
+	I = fpga->calibI();
+}
+void
+MenuWindow::fnO() {
+	qDebug() << "CalibrationO" << O << endl;
+	O = fpga->calibO();
 }

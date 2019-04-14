@@ -22,8 +22,19 @@ public:
   void Play();
   void Credits();
   void Exit();
-
   void back();
+  /////pour camode calib
+  void fnA();
+  void fnE();
+  void fnI();
+  void fnO();
+
+  float A;
+  float E;
+  float I;
+  float O;
+  /////pour camode calib
+
 
 private slots:
   void initHomePage();
@@ -33,6 +44,14 @@ private slots:
   QString readScores();
 
 private:
+
+	/////pour camode calib
+QPushButton* btnA;
+QPushButton* btnE;
+QPushButton* btnU;
+QPushButton* btnO;
+/////pour camode calib
+
   QPushButton* buttonOptions;
   QPushButton* buttonScores;
   QPushButton* buttonPlay;
@@ -61,6 +80,7 @@ private:
   QWidget* OptionsPageWidget;
   QWidget* ScoresPageWidget;
   QWidget* CreditsPageWidget;
+  QWidget* CalibPageWidget;
 };
 
 #endif
