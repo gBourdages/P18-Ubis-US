@@ -4,13 +4,15 @@
 
 
 
-Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int frameTime, unsigned int rot, unsigned int ID) : Sprites(picturePath, s, posx, posy, rot, ID) {
+Projectile::Projectile(const char *picturePath, float s, unsigned int posx, unsigned int posy, int speedX, int speedY, unsigned int f, unsigned int rot, unsigned int ID) : Sprites(picturePath, s, posx, posy, rot, ID) {
+    this->frameTime = f;
     this->speedX = speedX;
     this->speedY = speedY;
     time = new QTimer();
     connect(time, SIGNAL(timeout()), this, SLOT(animate()));
     connect(time, SIGNAL(timeout()), this, SLOT(collide()));
     time->start(frameTime);
+
 
 }
 
@@ -36,4 +38,12 @@ void Projectile::collide() {
 
 Projectile::~Projectile() {
     delete time;
+}
+
+void Projectile::pause() {
+    pauseState = !pauseState;
+    if (pauseState)
+        time->setInterval(9999999999999999999);
+    else
+        time->setInterval(frameTime);
 }

@@ -21,7 +21,8 @@ private:
     QTimer* timeShield;
     QTimer* timeLaser;
 	QString playerName;
-	quint64 score;
+	
+
 
 public:
     Game(ControllerFPGA* fpga, QString name);

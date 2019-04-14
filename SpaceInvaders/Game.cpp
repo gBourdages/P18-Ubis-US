@@ -87,6 +87,9 @@ void Game::shield() {
 void Game::keyPressEvent(QKeyEvent* event) {
     QList<Projectile*>* temp;
     switch (event->key()) {
+    case Qt::Key_Escape:
+        emit pause();
+        break;
     case Qt::Key_Left:
       player1->move(-10);
       break;
@@ -108,20 +111,30 @@ void Game::keyPressEvent(QKeyEvent* event) {
   }
 }
 
-void
-Game::checkFPGA()
+void Game::checkFPGA()
 {
+  QList<Projectile*>* temp;
   fpga->checkVoice();
   if (fpga->getVoiceState() & PA) {
-    // ACTION
+      player1->move(-10);
+      // ACTION
   }
   if (fpga->getVoiceState() & PE) {
-    // ACTION
+      player1->move(10);
+      // ACTION
   }
   if (fpga->getVoiceState() & PU) {
-    // ACTION
+      temp = player1->shoot();
+      if (temp) {
+          for (QList<Projectile*>::iterator it = temp->begin(); it != temp->end();
+              ++it) {
+              addSprite(*it);
+          }
+      }
+      // ACTION
   }
   if (fpga->getVoiceState() & PO) {
+      emit pause();
     // ACTION
   }
 }

@@ -28,13 +28,17 @@ void Minion::collided(unsigned int id) {
     switch (id) {
     case ALLYBULLET:
         this->life -= 1;
-        if (!life)
+        if (!life) {
+            emit this->score();
             emit this->deleteThis(this);
+        }
         break;
     case ALLYLASER:
         this->life -= 1;
-        if (!life)
+        if (!life) {
+            emit this->score();
             emit this->deleteThis(this);
+        }
         break;
     }
 }
