@@ -43,8 +43,11 @@ void MinionsArray::removeMinion(Sprites* s) {
 }
 
 void MinionsArray::shoot() {
-    int random = rand() % (array->size() - 1);
-    addSprites(dynamic_cast<Sprites*>(array->at(random)->shoot()));
+    int random;
+    if (array->size() && array->size() - 1) {
+        random = rand() % (array->size() - 1);
+        addSprites(dynamic_cast<Sprites*>(array->at(random)->shoot()));
+    }
     /*
     int i = 0;
     for (QList<Minion*>::iterator it = array->begin(); it != array->end(); ++it) {
