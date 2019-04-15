@@ -111,19 +111,29 @@ void Game::keyPressEvent(QKeyEvent* event) {
 void
 Game::checkFPGA()
 {
-  fpga->checkVoice();
-  if (fpga->getVoiceState() & PA) {
-    // ACTION
-  }
-  if (fpga->getVoiceState() & PE) {
-    // ACTION
-  }
-  if (fpga->getVoiceState() & PU) {
-    // ACTION
-  }
-  if (fpga->getVoiceState() & PO) {
-    // ACTION
-  }
+	QKeyEvent* event;
+	Phon voice = fpga->getVoice();
+	switch (voice) {
+	case Phon::A:
+		// space
+		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Space, Qt::NoModifier);
+		break;
+	case Phon::O:
+		// right
+		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Right, Qt::NoModifier);
+		break;
+	case Phon::I:
+		// left
+		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Left, Qt::NoModifier);
+		break;
+	case Phon::E:
+		// pause
+		//event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Space);
+		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_unknown, Qt::NoModifier); // FIXME
+		break;
+	}
+
+	keyPressEvent(event);
 }
 
 void Game::closeEvent(QCloseEvent *event)

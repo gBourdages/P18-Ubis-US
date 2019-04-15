@@ -261,30 +261,36 @@ MenuWindow::readScores()
   return file.readAll();
 }
 
+void MenuWindow::printPhoneme(Phoneme p)
+{
+	qDebug() << p.can0 << ", "
+		<< p.can1 << ", "
+		<< p.can2 << ", "
+		<< p.can3 << "\n";
+}
+
 void
 MenuWindow::fnA(){
-	//int samples = 10;
-	//if (samples > 0) {
-	//	QTimer *timer = new QTimer(this);
-	//	connect(timer, SIGNAL(timeout()), this, samples = samples -1);
-	//	timer->start(10);
-	//}
 	A = fpga->calibA();
-	qDebug() << "CalibrationA" << A << endl;
+	qDebug() << "Calib A: ";
+	printPhoneme(A);
 }
 void
 MenuWindow::fnE() {
 
 	E = fpga->calibE();
-	qDebug() << "CalibrationE" <<  E << endl;
+	qDebug() << "Calib E: ";
+	printPhoneme(E);
 }
 void
 MenuWindow::fnI() {
-	qDebug() << "CalibrationI" << I << endl;
 	I = fpga->calibI();
+	qDebug() << "Calib I: ";
+	printPhoneme(I);
 }
 void
 MenuWindow::fnO() {
-	qDebug() << "CalibrationO" << O << endl;
 	O = fpga->calibO();
+	qDebug() << "Calib O: ";
+	printPhoneme(O);
 }

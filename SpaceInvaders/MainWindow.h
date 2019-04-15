@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "Game.h"
+#include "Phoneme.h"
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QPushButton>
@@ -29,10 +30,10 @@ public:
   void fnI();
   void fnO();
 
-  float A;
-  float E;
-  float I;
-  float O;
+  Phoneme A;
+  Phoneme E;
+  Phoneme I;
+  Phoneme O;
   /////pour camode calib
 
 
@@ -42,6 +43,7 @@ private slots:
   void initScoresPage();
   void initCreditsPage();
   QString readScores();
+  void printPhoneme(Phoneme p);
 
 private:
 
