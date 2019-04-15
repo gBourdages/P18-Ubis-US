@@ -25,12 +25,18 @@ Display::~Display() {
 void Display::addSprite(Sprites* s) {
     scene->addItem(s);
     connect(s, &Sprites::deleteThis, this, &Display::removeSprites);
+    connect(this, &Display::pause, s, &Sprites::pause);
+    connect(s, &Sprites::score, this, &Display::scorePlus);
 }
 
 void Display::removeSprites(Sprites* s) {
     scene->removeItem(s);
     delete s;
 
+}
+
+void Display::scorePlus() {
+    score += 10;
 }
 
 

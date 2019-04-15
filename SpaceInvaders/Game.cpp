@@ -87,6 +87,9 @@ void Game::shield() {
 void Game::keyPressEvent(QKeyEvent* event) {
     QList<Projectile*>* temp;
     switch (event->key()) {
+    case Qt::Key_Escape:
+        emit pause();
+        break;
     case Qt::Key_Left:
       player1->move(-10);
       break;
@@ -108,8 +111,7 @@ void Game::keyPressEvent(QKeyEvent* event) {
   }
 }
 
-void
-Game::checkFPGA()
+void Game::checkFPGA()
 {
 	QKeyEvent* event;
 	Phon voice = fpga->getVoice();
@@ -128,8 +130,7 @@ Game::checkFPGA()
 		break;
 	case Phon::E:
 		// pause
-		//event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Space);
-		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_unknown, Qt::NoModifier); // FIXME
+		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier); // FIXME
 		break;
 	}
 

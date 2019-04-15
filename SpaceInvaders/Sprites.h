@@ -29,11 +29,13 @@ public:
     virtual void collided(unsigned int ID) {}
     void addPixmap(const char *picturePath, int ID);
     unsigned int getID();
+    virtual void pause() {};
 
 public slots:
 
 signals:
     void deleteThis(Sprites*);
+    void score();
 
 };
 

@@ -11,6 +11,7 @@ Q_OBJECT
 protected:
 
     QGraphicsScene* scene;
+    quint64 score;
 
 public:
     Display();
@@ -20,6 +21,10 @@ public:
 public slots:
     void removeSprites(Sprites* s);
     void addSprite(Sprites *s);
+    void scorePlus();
+
+signals:
+    void pause();
 };
 
 #endif
