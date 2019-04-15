@@ -95,26 +95,27 @@ public:
 		  inRange(val.can2, ref.can2) &&
 		  inRange(val.can3, ref.can3);
   }
-
+  
   Phon getVoice() {
-	  Phoneme val = lireFPGA();
+    Phoneme val = lireFPGA();
 
-	  if (val.can2 >= E.can2 - 5 && val.can3 >= E.can3 - 5) {
-		  return Phon::E;
-	  }
-	  else if (val.can0 <= I.can0 + 10 && val.can2 >= I.can2 - 5) {
-		  return Phon::I;
-	  }
-	  else  if (val.can0 > A.can0 - 5 && val.can1 >= A.can1 - 5) {
-		 return Phon::A;
-	 }
-	  else if (val.can1 <= O.can1 + 5 && val.can0 > O.can0 - 5) {
-		  return Phon::O;
-	  }
-	  else {
-		  return Phon::None;
-	  }
+    if (val.can0 > A.can0 - 5 && val.can1 >= A.can1 - 5) {
+      return Phon::A;
+    }
+    else if (val.can0 <= I.can0 + 15 && val.can2 >= I.can2 - 5) {
+      return Phon::I;
+    }
+
+
+    else if (val.can1 <= O.can1 + 10 && val.can0 > O.can0 - 5) {
+      return Phon::O;
+    }
+    else {
+      return Phon::None;
+    }
   }
+
+ 
 
   Phoneme calibrate() {
 	  QTime time = QTime::currentTime();
