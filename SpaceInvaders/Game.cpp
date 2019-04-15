@@ -52,7 +52,7 @@ Game::Game(ControllerFPGA* fpga, QString name) {
     this->fpga = fpga;
     timefpga = new QTimer();
     connect(timefpga, SIGNAL(timeout()), this, SLOT(checkFPGA()));
-    timefpga->start(2);
+    timefpga->start(12);
 
     timeLaser = new QTimer();
     connect(timeLaser, SIGNAL(timeout()), this, SLOT(laser()));
@@ -130,8 +130,11 @@ void Game::checkFPGA()
 		break;
 	case Phon::E:
 		// pause
-		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier); // FIXME
+		return;
+		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
 		break;
+	default:
+		return;
 	}
 
 	keyPressEvent(event);

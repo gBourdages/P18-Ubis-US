@@ -1,10 +1,10 @@
 #pragma once
 
 struct Phoneme {
-	float can0;
-	float can1;
-	float can2;
-	float can3;
+	double can0;
+	double can1;
+	double can2;
+	double can3;
 };
 
 enum class Phon {

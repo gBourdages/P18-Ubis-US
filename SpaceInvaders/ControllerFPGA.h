@@ -5,6 +5,7 @@
 #include "CommunicationFPGA.h"
 #include <iostream>
 #include <QTime>
+#include <QDebug>
 
 using namespace std;
 
@@ -46,30 +47,40 @@ public:
   }
 
   Phoneme lireFPGA() {
-	  int CAN0 = -1;
-	  int CAN1 = -1;
-	  int CAN2 = -1;
-	  int CAN3 = -1;
+	  int CAN0 = 0;
+	  int CAN1 = 0;
+	  int CAN2 = 0;
+	  int CAN3 = 0;
 
 	  port.lireRegistre(nreg_lect_can0, CAN0);
 	  port.lireRegistre(nreg_lect_can1, CAN1);
 	  port.lireRegistre(nreg_lect_can2, CAN2);
 	  port.lireRegistre(nreg_lect_can3, CAN3);
 
-	  int total = CAN0 + CAN1 + CAN2 + CAN3;
+	  float total = CAN0 + CAN1 + CAN2 + CAN3;
+	  
+	  if (CAN0 <= 0 || CAN1 <= 0 || CAN2 <= 0 || CAN3 <= 0) {
+		  return { 0, 0, 0, 0 };
+	  }
 
 	  Phoneme temp;
-	  temp.can0 = CAN0 / total;
-	  temp.can1 = CAN1 / total;
-	  temp.can2 = CAN2 / total;
-	  temp.can3 = CAN3 / total;
+	  temp.can0 = (double)CAN0 / total;
+	  temp.can1 = (double)CAN1 / total;
+	  temp.can2 = (double)CAN2 / total;
+	  temp.can3 = (double)CAN3 / total;
 
 	  return temp;
   }
 
-  bool inRange(float a, float b) {
-	  return a >= b - b * 10.0f / 100.0f &&
-		  a <= b + b * 10.0f / 100.0f;
+  bool inRange(double a, double b) {
+	  if (b == 0) {
+		  return false;
+	  }
+
+	  const double tolerance = 50.0f;
+
+	  return a >= b - b * tolerance / 100.0f &&
+		  a <= b + b * tolerance / 100.0f;
   }
 
   bool compare(Phoneme val, Phoneme ref) {
@@ -81,6 +92,10 @@ public:
 
   Phon getVoice() {
 	  Phoneme val = lireFPGA();
+
+	  qDebug() << "===";
+	  qDebug() << val.can0 << ", " << val.can1 << ", " << val.can2 << ", " << val.can3;
+	  qDebug() << "===";
 
 	  if (compare(val, A)) {
 		  return Phon::A;
@@ -102,10 +117,10 @@ public:
 	  QTime time = QTime::currentTime();
 	  QTime echantillon = QTime::currentTime();
 	  Phoneme total{ 0, 0, 0, 0 };
-	  int freq = 2;
+	  int freq = 20;
 	  quint64 counter = 0;
 	  
-	 while (time.elapsed() >= 3000) {
+	 while (time.elapsed() < 3000) {
 		 while (echantillon.elapsed() < freq) {
 		 }
 
@@ -116,13 +131,14 @@ public:
 		 total.can3 += temp.can3;
 
 		 counter++;
+		 echantillon = QTime::currentTime();
 	 }
 
-	 total.can0 /= counter;
-	 total.can1 /= counter;
-	 total.can2 /= counter;
-	 total.can3 /= counter;
-
+	 total.can0 /= (double)counter;
+	 total.can1 /= (double)counter;
+	 total.can2 /= (double)counter;
+	 total.can3 /= (double)counter;
+	 
 	 return total;
   }
 
