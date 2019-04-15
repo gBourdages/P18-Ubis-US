@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Ressources2/BackgroundMenu.jpg</file>
+        <file>Ressources2/play.png</file>
+        <file>Ressources2/play_hovered.png</file>
+        <file>Ressources2/exit.png</file>
+        <file>Ressources2/exit_hovered.png</file>
+        <file>Ressources2/options.png</file>
+        <file>Ressources2/options_hovered.png</file>
+        <file>Ressources2/scores_hovered.png</file>
+        <file>Ressources2/scores.png</file>
+        <file>Ressources2/credits_hovered.png</file>
+        <file>Ressources2/credits.png</file>
+        <file>Ressources2/credits_scene.png</file>
+        <file>Ressources2/back.png</file>
+        <file>Ressources2/back_hovered.png</file>
+    </qresource>
+</RCC>

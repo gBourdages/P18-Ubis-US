@@ -57,17 +57,23 @@ public:
 	  port.lireRegistre(nreg_lect_can2, CAN2);
 	  port.lireRegistre(nreg_lect_can3, CAN3);
 
-	  float total = CAN0 + CAN1 + CAN2 + CAN3;
-	  
+	  //float total = CAN0 + CAN1 + CAN2 + CAN3;
+	  float total = 255;
+
+	  /*
 	  if (CAN0 <= 0 || CAN1 <= 0 || CAN2 <= 0 || CAN3 <= 0) {
 		  return { 0, 0, 0, 0 };
 	  }
+	  */
+	  qDebug() << "===";
+	  qDebug() << CAN0 << ", " << CAN1 << ", " << CAN2 << ", " << CAN3;
+	  qDebug() << "===";
 
 	  Phoneme temp;
-	  temp.can0 = (double)CAN0 / total;
-	  temp.can1 = (double)CAN1 / total;
-	  temp.can2 = (double)CAN2 / total;
-	  temp.can3 = (double)CAN3 / total;
+	  temp.can0 = CAN0;
+	  temp.can1 = CAN1;
+	  temp.can2 = CAN2;
+	  temp.can3 = CAN3;
 
 	  return temp;
   }
@@ -93,20 +99,17 @@ public:
   Phon getVoice() {
 	  Phoneme val = lireFPGA();
 
-	  qDebug() << "===";
-	  qDebug() << val.can0 << ", " << val.can1 << ", " << val.can2 << ", " << val.can3;
-	  qDebug() << "===";
-
-	  if (compare(val, A)) {
-		  return Phon::A;
-	  } else if (compare(val, O)) {
-		  return Phon::O;
-	  }
-	  else if (compare(val, E)) {
+	  if (val.can2 >= E.can2 - 5 && val.can3 >= E.can3 - 5) {
 		  return Phon::E;
 	  }
-	  else if (compare(val, I)) {
+	  else if (val.can0 <= I.can0 + 10 && val.can2 >= I.can2 - 5) {
 		  return Phon::I;
+	  }
+	  else  if (val.can0 > A.can0 - 5 && val.can1 >= A.can1 - 5) {
+		 return Phon::A;
+	 }
+	  else if (val.can1 <= O.can1 + 5 && val.can0 > O.can0 - 5) {
+		  return Phon::O;
 	  }
 	  else {
 		  return Phon::None;
@@ -139,6 +142,10 @@ public:
 	 total.can2 /= (double)counter;
 	 total.can3 /= (double)counter;
 	 
+	 qDebug() << "==Moyenne==";
+	 qDebug() << total.can0 << ", " << total.can1 << ", " << total.can2 << ", " << total.can3;
+	 qDebug() << "====";
+
 	 return total;
   }
 

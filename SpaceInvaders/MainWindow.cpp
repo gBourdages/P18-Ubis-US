@@ -18,7 +18,7 @@ MenuWindow::MenuWindow(const char* titre)
 
   // init pages
 
-  m_MasterWidget->addWidget(m_homePage);
+  m_MasterWidget->addWidget(m_homeView);
   m_MasterWidget->addWidget(OptionsPageWidget);
   m_MasterWidget->addWidget(ScoresPageWidget);
   m_MasterWidget->addWidget(CreditsPageWidget);
@@ -31,37 +31,50 @@ MenuWindow::~MenuWindow() {}
 void
 MenuWindow::initHomePage()
 {
-  m_homePage = new QWidget;
+	m_homeScene = new QGraphicsScene();
+	m_homeScene->setSceneRect(this->rect());
 
-  // Cr�ation des Widgets
-  labelExamInvader = new QLabel("Exam Invader", this);
-  labelExamInvader->setAlignment(Qt::AlignCenter | Qt::AlignBottom);
+	Button* play = new Button(":/Ressources2/play.png",
+		":/Ressources2/play_hovered.png",
+		{ 200, 100 },
+		{ m_homeScene->width() / 2 - 100, 0 });
 
-  buttonOptions = new QPushButton("Options", this);
-  buttonScores = new QPushButton("Scores", this);
-  buttonPlay = new QPushButton("Jouer", this);
-  buttonCredits = new QPushButton("Crédits", this);
-  buttonExit = new QPushButton("Quitter", this);
+	Button* options = new Button(":/Ressources2/options.png",
+		":/Ressources2/options_hovered.png",
+		{ 200, 100 },
+		{ m_homeScene->width() / 2 - 100, 110 });
 
-  // Cr�ation des liens
-  connect(buttonOptions, &QPushButton::clicked, this, &MenuWindow::Options);
-  connect(buttonScores, &QPushButton::clicked, this, &MenuWindow::Scores);
-  connect(buttonPlay, &QPushButton::clicked, this, &MenuWindow::Play);
-  connect(buttonCredits, &QPushButton::clicked, this, &MenuWindow::Credits);
-  connect(buttonExit, &QPushButton::clicked, this, &MenuWindow::Exit);
+	Button* scores = new Button(":/Ressources2/scores.png",
+		":/Ressources2/scores_hovered.png",
+		{ 200, 100 },
+		{ m_homeScene->width() / 2 - 100, 220 });
 
-  // Cr�ation du layout
-  QGridLayout* layout = new QGridLayout;
-  layout = new QGridLayout;
+	Button* credits = new Button(":/Ressources2/credits.png",
+		":/Ressources2/credits_hovered.png",
+		{ 200, 100 },
+		{ m_homeScene->width() / 2 - 100, 330 });
 
-  layout->addWidget(labelExamInvader, 1, 1, 1, 2);
-  layout->addWidget(buttonOptions, 2, 1, 1, 1);
-  layout->addWidget(buttonScores, 2, 2, 1, 1);
-  layout->addWidget(buttonPlay, 3, 1, 1, 2);
-  layout->addWidget(buttonCredits, 4, 1, 1, 1);
-  layout->addWidget(buttonExit, 4, 2, 1, 1);
+	Button* exit = new Button(":/Ressources2/exit.png",
+		":/Ressources2/exit_hovered.png",
+		{ 200, 100 },
+		{ m_homeScene->width() / 2 - 100, 440 });
 
-  m_homePage->setLayout(layout);
+	m_homeScene->addItem(play);
+	m_homeScene->addItem(exit);
+	m_homeScene->addItem(options);
+	m_homeScene->addItem(scores);
+	m_homeScene->addItem(credits);
+
+	connect(play, &Button::clicked, this, &MenuWindow::Play);
+	connect(exit, &Button::clicked, this, &MenuWindow::Exit);
+	connect(options, &Button::clicked, this, &MenuWindow::Options);
+	connect(credits, &Button::clicked, this, &MenuWindow::Credits);
+	connect(scores, &Button::clicked, this, &MenuWindow::Scores);
+
+	m_homeView = new QGraphicsView(m_homeScene);
+	m_homeView->setAlignment(Qt::AlignCenter);
+	m_homeView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	m_homeView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 void

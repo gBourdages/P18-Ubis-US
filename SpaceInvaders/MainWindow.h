@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Phoneme.h"
+#include "button.h"
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QPushButton>
@@ -10,6 +11,8 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QtWidgets>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 
 class MenuWindow : public QMainWindow
 {
@@ -78,7 +81,8 @@ QPushButton* btnO;
   QTextEdit* textCredits;
 
   QStackedWidget* m_MasterWidget;
-  QWidget* m_homePage;
+  QGraphicsView* m_homeView;
+  QGraphicsScene* m_homeScene;
   QWidget* OptionsPageWidget;
   QWidget* ScoresPageWidget;
   QWidget* CreditsPageWidget;

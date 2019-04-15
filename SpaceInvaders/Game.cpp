@@ -49,6 +49,7 @@ Game::Game(ControllerFPGA* fpga, QString name) {
         connect((*it), &Sprites::deleteThis, minions, &MinionsArray::removeMinion);
         addSprite(*it);
     }
+
     this->fpga = fpga;
     timefpga = new QTimer();
     connect(timefpga, SIGNAL(timeout()), this, SLOT(checkFPGA()));
@@ -131,8 +132,6 @@ void Game::checkFPGA()
 	case Phon::E:
 		// pause
 		return;
-		event = new QKeyEvent(QEvent::KeyPress, Qt::Key_Escape, Qt::NoModifier);
-		break;
 	default:
 		return;
 	}
