@@ -1,6 +1,6 @@
 #ifndef ALLYLASER_H
 #define ALLYLASER_H
-#define LASERSCALE 0.3
+#define LASERSCALE 0.6
 
 #include "Projectile.h"
 class AllyLaser : public Projectile {

@@ -2,7 +2,7 @@
 
 
 
-Laser::Laser() : Weapon("./ressources/laser.png", LASERSCALE, 0, -20, 10, ALLYLASER) {
+Laser::Laser() : Weapon("./ressources/laser.png", LASERSCALE, 0, -15, 10, ALLYLASER) {
     Projectile* load = new Projectile(picturePath, LASERSCALE, 0, 0, speedX, speedY, frametime, 0, ID);
     this->height = load->boundingRect().height();
     this->width = load->boundingRect().width();

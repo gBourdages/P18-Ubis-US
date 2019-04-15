@@ -61,7 +61,7 @@ void Ship::collided(unsigned int ID) {
             break;
         case POWERUPLASER:
             selectedWeapon = 1;
-            timeLaser->start(5000);
+            timeLaser->start(10000);
             break;
         
     }
